@@ -146,21 +146,21 @@ public class Mascota {
  
     public void mostrarEstado() {
         EstadoMascota estado = stats.getEstado(dormida);
-        System.out.println("\n  ╔══════════════════════════════════════════╗");
-        System.out.printf ("  ║  %s %s   Día %d   Nivel %d%n",
+        System.out.println("\n ============================================");
+        System.out.printf ("     %s %s   Día %d   Nivel %d%n",
                 emoji, nombre, stats.getDiasVividos(), stats.getNivel());
-        System.out.printf ("  ║  Estado: %-35s%n", estado.getDescripcion());
-        System.out.printf ("  ║  💰 Dinero: $%-5d  XP: %d/%d%n",
+        System.out.printf ("     Estado: %-35s%n", estado.getDescripcion());
+        System.out.printf ("     💰 Dinero: $%-5d  XP: %d/%d%n",
                 stats.getDinero(), stats.getExperiencia(), stats.getXpNecesaria());
-        System.out.println("  ╠══════════════════════════════════════════╣");
-        System.out.printf ("  ║  🍗 Hambre   : %s%n", barra(stats.getHambre(),    true));
-        System.out.printf ("  ║  ⚡ Energía  : %s%n", barra(stats.getEnergia(),   false));
-        System.out.printf ("  ║  😊 Felicidad: %s%n", barra(stats.getFelicidad(), false));
-        System.out.printf ("  ║  ❤️  Salud    : %s%n", barra(stats.getSalud(),    false));
-        System.out.printf ("  ║  🛁 Higiene  : %s%n", barra(stats.getHigiene(),   false));
+        System.out.println("   ============================================");
+        System.out.printf ("     🍗 Hambre   : %s%n", barra(stats.getHambre(),    true));
+        System.out.printf ("     ⚡ Energía  : %s%n", barra(stats.getEnergia(),   false));
+        System.out.printf ("     😊 Felicidad: %s%n", barra(stats.getFelicidad(), false));
+        System.out.printf ("     ❤️  Salud    : %s%n", barra(stats.getSalud(),    false));
+        System.out.printf ("     🛁 Higiene  : %s%n", barra(stats.getHigiene(),   false));
         if (enferma)
-            System.out.println("  ║  ⚠️  ¡ADVERTENCIA: Está enfermo/a! Usa medicina.");
-        System.out.println("  ╚══════════════════════════════════════════╝");
+            System.out.println("     ⚠️  ¡ADVERTENCIA: Está enfermo/a! Usa medicina.");
+        System.out.println("   =============================================");
     }
  
     private String barra(int valor, boolean invertido) {

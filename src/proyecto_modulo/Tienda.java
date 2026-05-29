@@ -33,45 +33,51 @@ public class Tienda {
         boolean enTienda = true;
 
         while (enTienda) {
-            System.out.println("\n  ╔══════════════════════════════════════════╗");
-            System.out.println("  ║           🏪 TIENDA VIRTUAL              ║");
-            System.out.printf ("  ║         💰 Tu dinero: $%-5d             ║%n",
+            System.out.println("\n ===========================================");
+            System.out.println("              🏪 TIENDA VIRTUAL               ");
+            System.out.printf ("            💰 Tu dinero: $%-5d              %n",
                     mascota.getStats().getDinero());
-            System.out.println("  ╠══════════════════════════════════════════╣");
+            System.out.println("   ===========================================");
 
             for (int i = 0; i < PRODUCTOS.length; i++) {
                 Producto p = PRODUCTOS[i];
-                System.out.printf("  ║  %d. %s %-18s  $%d%n",
+                System.out.printf("     %d. %s %-18s  $%d%n",
                         i + 1, p.emoji, p.nombre, p.precio);
-                System.out.printf("  ║     Efecto: %-30s ║%n", p.efecto);
-                System.out.println("  ║                                          ║");
+                System.out.printf("        Efecto: %-30s  %n", p.efecto);
+                System.out.println("                                          ");
             }
-            System.out.println("  ║  0. Salir de la tienda                   ║");
-            System.out.println("  ╚══════════════════════════════════════════╝");
+            System.out.println("     0. Salir de la tienda                    ");
+            System.out.println("   ===========================================");
             System.out.print("  👉 ¿Qué deseas comprar? ");
 
             int op = leerInt(sc);
             if (op == 0) {
                 enTienda = false;
             } else if (op >= 1 && op <= PRODUCTOS.length) {
-                comprar(mascota, PRODUCTOS[op - 1]);
+                comprar(mascota, PRODUCTOS[op - 1],sc);
             } else {
                 System.out.println("  ❌ Opción no válida.");
             }
         }
     }
 
-    private static void comprar(Mascota mascota, Producto p) {
-        if (mascota.getStats().getDinero() < p.precio) {
+    private static void comprar(Mascota mascota, Producto p, Scanner sc) {
+    	if (mascota.getStats().getDinero() < p.precio) {
             System.out.println("  💸 No tienes suficiente dinero. Necesitas $" + p.precio);
+            System.out.print("  👉 Presiona Enter para continuar...");
+            sc.nextLine(); // Pausa para que no se borre el mensaje
             return;
         }
+        
         mascota.getStats().setDinero(mascota.getStats().getDinero() - p.precio);
         aplicarEfecto(mascota, p.efecto);
+        
         System.out.println("  ✅ Compraste " + p.emoji + " " + p.nombre +
                 " por $" + p.precio + ". ¡Aplicado a " + mascota.getNombre() + "!");
+                
+        System.out.print("  👉 Presiona Enter para continuar...");
+        sc.nextLine(); // Pausa para el mensaje de éxito
     }
-
     private static void aplicarEfecto(Mascota mascota, String efecto) {
         String[] partes = efecto.split(",");
         Estadisticas s = mascota.getStats();
