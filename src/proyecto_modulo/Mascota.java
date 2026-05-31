@@ -1,7 +1,8 @@
 package proyecto_modulo;
-
+ 
 public class Mascota {
-	private String nombre;
+ 
+    private String nombre;
     private String tipo;
     private String emoji;
     private boolean dormida;
@@ -21,26 +22,29 @@ public class Mascota {
  
     private String asignarEmoji(String tipo) {
         switch (tipo.toLowerCase()) {
-            case "perro":   return "🐶";
-            case "gato":    return "🐱";
+            case "perro":           return "🐶";
+            case "gato":            return "🐱";
             case "dragon":
-            case "dragón":  return "🐲";
-            case "conejo":  return "🐰";
-            case "panda":   return "🐼";
-            case "zorro":   return "🦊";
-            case "lobo":    return "🐺";
-            default:        return "🐾";
+            case "dragón":          return "🐲";
+            case "conejo":          return "🐰";
+            case "panda":           return "🐼";
+            case "zorro":           return "🦊";
+            case "lobo":            return "🐺";
+            default:                return "🐾";
         }
     }
  
     // ════════════════════════════════════════════════════
-    //  ACCIONES
+    //  ACCIONES — cada una llama al Reproductor
     // ════════════════════════════════════════════════════
  
     public String alimentar() {
         if (dormida) return "  😴 " + nombre + " está dormido/a, no puede comer.";
         if (stats.getHambre() <= 5)
-            return "  😊 " + nombre + " ya está lleno/a, no tiene hambre.";
+            return "  😊 " + nombre + " ya está lleno/a.";
+ 
+        // 🔊 Sonido de comer
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_COMER);
  
         stats.setHambre(stats.getHambre() - 35);
         stats.setFelicidad(stats.getFelicidad() + 10);
@@ -52,11 +56,11 @@ public class Mascota {
     }
  
     public String jugar() {
-        if (dormida) return "  😴 " + nombre + " está durmiendo, déjalo/a descansar.";
+        if (dormida) return "  😴 " + nombre + " está durmiendo.";
         if (stats.getEnergia() < 20)
-            return "  😓 " + nombre + " está muy cansado/a para jugar. ¡Hazlo dormir!";
+            return "  😓 " + nombre + " está muy cansado/a para jugar.";
         if (enferma)
-            return "  🤒 " + nombre + " está enfermo/a, no puede jugar ahora.";
+            return "  🤒 " + nombre + " está enfermo/a, no puede jugar.";
  
         stats.setEnergia(stats.getEnergia() - 25);
         stats.setHambre(stats.getHambre() + 10);
@@ -70,6 +74,10 @@ public class Mascota {
  
     public String dormir() {
         if (dormida) return "  😴 " + nombre + " ya está durmiendo...";
+ 
+        // 🔊 Sonido de dormir
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_DUERMA);
+ 
         dormida = true;
         avanzarTurno();
         return "  🌙 " + nombre + " se fue a dormir dulcemente. ¡Buenas noches!";
@@ -85,6 +93,10 @@ public class Mascota {
  
     public String bañar() {
         if (dormida) return "  😴 " + nombre + " está durmiendo.";
+ 
+        // 🔊 Sonido de bañarse
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_BAÑAR);
+ 
         stats.setHigiene(100);
         stats.setSalud(Math.min(100, stats.getSalud() + 10));
         stats.setFelicidad(stats.getFelicidad() + 5);
@@ -96,7 +108,7 @@ public class Mascota {
     }
  
     public String medicar() {
-        if (!enferma) return "  💊 " + nombre + " no está enfermo/a, no necesita medicina.";
+        if (!enferma) return "  💊 " + nombre + " no está enfermo/a.";
         if (stats.getDinero() < 20)
             return "  💸 No tienes suficiente dinero. Necesitas $20.";
  
@@ -105,7 +117,7 @@ public class Mascota {
         enferma = false;
         boolean subioNivel = stats.ganarExperiencia(20);
         avanzarTurno();
-        String msg = "  💊 ¡" + nombre + " tomó su medicina y se está recuperando! (+20 XP)";
+        String msg = "  💊 ¡" + nombre + " tomó su medicina y se recupera! (+20 XP)";
         if (subioNivel) msg += nivelUpMsg();
         return msg;
     }
@@ -121,18 +133,25 @@ public class Mascota {
         stats.setFelicidad(stats.getFelicidad() - 5);
         boolean subioNivel = stats.ganarExperiencia(20);
         avanzarTurno();
-        String msg = "  💼 " + nombre + " trabajó duro y ganó $" + ganancia + "! (+20 XP)";
+        String msg = "  💼 " + nombre + " trabajó y ganó $" + ganancia + "! (+20 XP)";
         if (subioNivel) msg += nivelUpMsg();
         return msg;
     }
  
-    // Avanza el turno y puede provocar enfermedad aleatoria
+    // ── Avanza turno y puede provocar enfermedad ─────────
     private void avanzarTurno() {
         turno++;
         stats.pasarTurno(dormida);
-        // 10% de chance de enfermarse si la higiene o salud son bajas
+ 
+        // 10% de chance de enfermarse si higiene baja
         if (!enferma && stats.getHigiene() <= 30 && Math.random() < 0.10) {
             enferma = true;
+        }
+ 
+        // 🔊 Si la mascota muere, suena el efecto de muerte
+        if (!stats.estaViva()) {
+            Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_MUERTE);
+            Reproductor_sonidos.detenerMusicaFondo();
         }
     }
  
@@ -143,24 +162,23 @@ public class Mascota {
     // ════════════════════════════════════════════════════
     //  DISPLAY
     // ════════════════════════════════════════════════════
- 
     public void mostrarEstado() {
         EstadoMascota estado = stats.getEstado(dormida);
-        System.out.println("\n ============================================");
-        System.out.printf ("     %s %s   Día %d   Nivel %d%n",
+        System.out.println("\n  ╔══════════════════════════════════════════╗");
+        System.out.printf ("  ║  %s %s   Día %d   Nivel %d%n",
                 emoji, nombre, stats.getDiasVividos(), stats.getNivel());
-        System.out.printf ("     Estado: %-35s%n", estado.getDescripcion());
-        System.out.printf ("     💰 Dinero: $%-5d  XP: %d/%d%n",
+        System.out.printf ("  ║  Estado: %-35s%n", estado.getDescripcion());
+        System.out.printf ("  ║  💰 Dinero: $%-5d  XP: %d/%d%n",
                 stats.getDinero(), stats.getExperiencia(), stats.getXpNecesaria());
-        System.out.println("   ============================================");
-        System.out.printf ("     🍗 Hambre   : %s%n", barra(stats.getHambre(),    true));
-        System.out.printf ("     ⚡ Energía  : %s%n", barra(stats.getEnergia(),   false));
-        System.out.printf ("     😊 Felicidad: %s%n", barra(stats.getFelicidad(), false));
-        System.out.printf ("     ❤️  Salud    : %s%n", barra(stats.getSalud(),    false));
-        System.out.printf ("     🛁 Higiene  : %s%n", barra(stats.getHigiene(),   false));
+        System.out.println("  ╠══════════════════════════════════════════╣");
+        System.out.printf ("  ║  🍗 Hambre   : %s%n", barra(stats.getHambre(),    true));
+        System.out.printf ("  ║  ⚡ Energía  : %s%n", barra(stats.getEnergia(),   false));
+        System.out.printf ("  ║  😊 Felicidad: %s%n", barra(stats.getFelicidad(), false));
+        System.out.printf ("  ║  ❤️  Salud    : %s%n", barra(stats.getSalud(),     false));
+        System.out.printf ("  ║  🛁 Higiene  : %s%n", barra(stats.getHigiene(),   false));
         if (enferma)
-            System.out.println("     ⚠️  ¡ADVERTENCIA: Está enfermo/a! Usa medicina.");
-        System.out.println("   =============================================");
+            System.out.println("  ║  ⚠️  ¡Está enfermo/a! Usa medicina.      ║");
+        System.out.println("  ╚══════════════════════════════════════════╝");
     }
  
     private String barra(int valor, boolean invertido) {
@@ -182,5 +200,4 @@ public class Mascota {
     public Estadisticas getStats()  { return stats; }
     public boolean estaViva()       { return stats.estaViva(); }
 }
-
 

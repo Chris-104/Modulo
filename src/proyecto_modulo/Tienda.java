@@ -43,8 +43,13 @@ public class Tienda {
                 Producto p = PRODUCTOS[i];
                 System.out.printf("     %d. %s %-18s  $%d%n",
                         i + 1, p.emoji, p.nombre, p.precio);
+
                 System.out.printf("        Efecto: %-30s  %n", p.efecto);
                 System.out.println("                                          ");
+
+                System.out.printf("       Efecto: %-30s ║%n", p.efecto);
+                System.out.println("                                        ");
+
             }
             System.out.println("     0. Salir de la tienda                    ");
             System.out.println("   ===========================================");
@@ -54,7 +59,11 @@ public class Tienda {
             if (op == 0) {
                 enTienda = false;
             } else if (op >= 1 && op <= PRODUCTOS.length) {
+
                 comprar(mascota, PRODUCTOS[op - 1],sc);
+
+            	comprar(mascota, PRODUCTOS[op - 1],sc);
+
             } else {
                 System.out.println("  ❌ Opción no válida.");
             }

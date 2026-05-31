@@ -12,11 +12,11 @@ public class Estadisticas {
 	    private int diasVividos; // días que ha vivido
 	 
 	    public Estadisticas() {
-	        this.hambre      = 30;
-	        this.energia     = 80;
-	        this.felicidad   = 70;
+	        this.hambre      = 50;
+	        this.energia     = 50;
+	        this.felicidad   = 50;
 	        this.salud       = 100;
-	        this.higiene     = 80;
+	        this.higiene     = 50;
 	        this.nivel       = 1;
 	        this.experiencia = 0;
 	        this.dinero      = 50;
@@ -31,8 +31,8 @@ public class Estadisticas {
 	            felicidad = Math.max(0,   felicidad - 4);
 	            higiene   = Math.max(0,   higiene   - 3);
 	            // Si tiene mucha hambre o está muy sucio, baja la salud
-	            if (hambre >= 80) salud = Math.max(0, salud - 5);
-	            if (higiene <= 20) salud = Math.max(0, salud - 3);
+	            if (hambre >= 80) salud = Math.max(0, salud - 6);
+	            if (higiene <= 20) salud = Math.max(0, salud - 10);
 	        } else {
 	            energia = Math.min(100, energia + 15);
 	            hambre  = Math.min(100, hambre  + 2);
