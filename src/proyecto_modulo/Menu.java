@@ -307,14 +307,13 @@ public class Menu {
     }
 
      int leerInt() {
-		while (!sc.hasNextInt()) {
-			System.out.print("Ingresa un número válido: ");
-			sc.next();
+		while (true) {
+			try {
+				return Integer.parseInt(sc.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.print("Ingresa un número válido: ");
+			}
 		}
-
-		int numero = Integer.parseInt(sc.nextLine());
-
-		return numero;
 	}
 
     public Scanner getSc() { return sc; }
