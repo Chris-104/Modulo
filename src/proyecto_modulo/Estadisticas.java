@@ -1,5 +1,7 @@
 package proyecto_modulo;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Estadisticas {
 	 private int hambre;      // 0=lleno  → 100=muerto de hambre
 	    private int energia;     // 0=sin energía → 100=lleno
@@ -10,16 +12,21 @@ public class Estadisticas {
 	    private int experiencia; // XP acumulada
 	    private int dinero;      // monedas del jugador
 	    private int diasVividos; // días que ha vivido
-	 
+
+	//metodo para generar numeros randoms se pone numero menor numero mayor y se manda
+	//a llamar solo con el nombre
+	private int numerosRandom(){
+		return ThreadLocalRandom.current().nextInt(30, 76);
+	}
 	    public Estadisticas() {
-	        this.hambre      = 50;
-	        this.energia     = 50;
-	        this.felicidad   = 50;
-	        this.salud       = 100;
-	        this.higiene     = 50;
+	        this.hambre      = numerosRandom();
+	        this.energia     = numerosRandom();
+	        this.felicidad   = numerosRandom();
+	        this.salud       = numerosRandom();
+	        this.higiene     = numerosRandom();
 	        this.nivel       = 1;
 	        this.experiencia = 0;
-	        this.dinero      = 50;
+	        this.dinero      = numerosRandom();
 	        this.diasVividos = 1;
 	    }
 
