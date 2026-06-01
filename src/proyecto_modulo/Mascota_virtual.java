@@ -6,25 +6,18 @@ public class Mascota_virtual {
 		 
         Menu    menu    = new Menu();
         boolean jugando = true;
- 
-        // 🔊 Iniciar música de fondo del menú al arrancar
+
         Reproductor_sonidos.iniciarMusicaFondo();
- 
-        // ════════════════════════════════════════════════
-        //  LOOP DEL MENÚ DE INICIO
-        // ════════════════════════════════════════════════
+
         while (jugando) {
             int opInicio = menu.mostrarMenuInicio();
- 
-            // 🔊 Click en cada selección del menú
-          
- 
+
             switch (opInicio) {
  
-                case 1: // Nueva Partida
+                case 1:
                     Mascota mascota = menu.crearMascota();
                     iniciarPartida(mascota, menu);
-                    // 🔊 Al volver al menú, retomar música de fondo
+
                     Reproductor_sonidos.iniciarMusicaFondo();
                     break;
  
@@ -37,7 +30,6 @@ public class Mascota_virtual {
                     break;
  
                 case 4:
-                    // 🔊 Detener todo el sonido al salir
                     Reproductor_sonidos.detenerMusicaFondo();
                     System.out.println("\n  👋 ¡Hasta luego! ¡Gracias por jugar!\n");
                     jugando = false;
@@ -49,10 +41,7 @@ public class Mascota_virtual {
             }
         }
     }
- 
-    // ════════════════════════════════════════════════════
-    //  LOOP PRINCIPAL DE LA PARTIDA
-    // ════════════════════════════════════════════════════
+
     private static void iniciarPartida(Mascota mascota, Menu menu) {
         boolean enPartida = true;
  
@@ -60,8 +49,6 @@ public class Mascota_virtual {
  
             mascota.mostrarEstado();
             int opcion = menu.mostrarMenuJuego(mascota);
- 
-            // 🔊 Click en cada opción del menú de juego
          
             System.out.println();
  
@@ -69,21 +56,18 @@ public class Mascota_virtual {
  
             switch (opcion) {
                 case 1:
-                    // alimentar() ya llama a Reproductor.sfxComer() internamente
                     resultado = mascota.alimentar();
                     break;
                 case 2:
                     resultado = mascota.jugar();
                     break;
                 case 3:
-                    // dormir() ya llama a Reproductor.sfxDuerma() internamente
                     resultado = mascota.dormir();
                     break;
                 case 4:
                     resultado = mascota.despertar();
                     break;
                 case 5:
-                    // bañar() ya llama a Reproductor.sfxBañar() internamente
                     resultado = mascota.bañar();
                     break;
                 case 6:
@@ -112,9 +96,7 @@ public class Mascota_virtual {
             }
  
             System.out.println(resultado);
- 
-            // Verificar si la mascota murió
-            // (el sonido de muerte ya se llama desde avanzarTurno() en Mascota)
+
             if (!mascota.estaViva()) {
                 menu.mostrarGameOver(mascota);
                 enPartida = false;
@@ -123,10 +105,7 @@ public class Mascota_virtual {
             }
         }
     }
- 
-    // ════════════════════════════════════════════════════
-    //  MENÚ DE AUDIO DENTRO DEL JUEGO
-    // ════════════════════════════════════════════════════
+
     private static void mostrarMenuAudioEnJuego(Menu menu) {
         boolean enAudio = true;
         while (enAudio) {
@@ -146,7 +125,6 @@ public class Mascota_virtual {
  
             switch (op) {
                 case 1:
-                    // Alterna sonido ON/OFF
                     Reproductor_sonidos.setSonidoActivado(!Reproductor_sonidos.isSonidoActivado());
                     System.out.println("  🔊 Sonido: " +
                             (Reproductor_sonidos.isSonidoActivado() ? "ACTIVADO ✅" : "DESACTIVADO ❌"));
@@ -167,10 +145,7 @@ public class Mascota_virtual {
             }
         }
     }
- 
-    // ════════════════════════════════════════════════════
-    //  ESTADÍSTICAS DETALLADAS
-    // ════════════════════════════════════════════════════
+
     private static void mostrarEstadisticasDetalladas(Mascota mascota) {
         Estadisticas s = mascota.getStats();
         System.out.println("\n  ╔══════════════════════════════════════════╗");

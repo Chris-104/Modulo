@@ -74,7 +74,7 @@ public class Tienda {
     	if (mascota.getStats().getDinero() < p.precio) {
             System.out.println("  💸 No tienes suficiente dinero. Necesitas $" + p.precio);
             System.out.print("  👉 Presiona Enter para continuar...");
-            sc.nextLine(); // Pausa para que no se borre el mensaje
+            sc.nextLine();
             return;
         }
         
@@ -85,7 +85,7 @@ public class Tienda {
                 " por $" + p.precio + ". ¡Aplicado a " + mascota.getNombre() + "!");
                 
         System.out.print("  👉 Presiona Enter para continuar...");
-        sc.nextLine(); // Pausa para el mensaje de éxito
+        sc.nextLine();
     }
     private static void aplicarEfecto(Mascota mascota, String efecto) {
         String[] partes = efecto.split(",");

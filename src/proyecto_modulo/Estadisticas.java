@@ -22,15 +22,13 @@ public class Estadisticas {
 	        this.dinero      = 50;
 	        this.diasVividos = 1;
 	    }
-	 
-	    // ── Método que pasa el tiempo (se llama cada turno) ──
+
 	    public void pasarTurno(boolean dormida) {
 	        if (!dormida) {
 	            hambre    = Math.min(100, hambre    + 6);
 	            energia   = Math.max(0,   energia   - 5);
 	            felicidad = Math.max(0,   felicidad - 4);
 	            higiene   = Math.max(0,   higiene   - 3);
-	            // Si tiene mucha hambre o está muy sucio, baja la salud
 	            if (hambre >= 80) salud = Math.max(0, salud - 6);
 	            if (higiene <= 20) salud = Math.max(0, salud - 10);
 	        } else {
@@ -38,22 +36,20 @@ public class Estadisticas {
 	            hambre  = Math.min(100, hambre  + 2);
 	        }
 	    }
-	 
-	    // ── Ganar experiencia y subir nivel ─────────────────
+
 	    public boolean ganarExperiencia(int xp) {
 	        experiencia += xp;
 	        int xpNecesaria = nivel * 100;
 	        if (experiencia >= xpNecesaria) {
 	            experiencia -= xpNecesaria;
 	            nivel++;
-	            salud     = 100; // al subir nivel se cura
+	            salud     = 100;
 	            felicidad = Math.min(100, felicidad + 20);
-	            return true; // subió de nivel
+	            return true;
 	        }
 	        return false;
 	    }
-	 
-	    // ── Determinar estado actual ─────────────────────────
+
 	    public EstadoMascota getEstado(boolean dormida) {
 	        if (salud <= 0)        return EstadoMascota.MUERTO;
 	        if (dormida)           return EstadoMascota.DORMIDO;
@@ -68,8 +64,7 @@ public class Estadisticas {
 	    public boolean estaViva() {
 	        return salud > 0 && hambre < 100;
 	    }
-	 
-	    // ── Getters y Setters ────────────────────────────────
+
 	    public int getHambre()      { return hambre; }
 	    public int getEnergia()     { return energia; }
 	    public int getFelicidad()   { return felicidad; }

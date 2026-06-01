@@ -33,17 +33,13 @@ public class Mascota {
             default:                return "🐾";
         }
     }
- 
-    // ════════════════════════════════════════════════════
-    //  ACCIONES — cada una llama al Reproductor
-    // ════════════════════════════════════════════════════
+
  
     public String alimentar() {
         if (dormida) return "  😴 " + nombre + " está dormido/a, no puede comer.";
         if (stats.getHambre() <= 5)
             return "  😊 " + nombre + " ya está lleno/a.";
- 
-        // 🔊 Sonido de comer
+
         Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_COMER);
  
         stats.setHambre(stats.getHambre() - 35);
@@ -74,8 +70,7 @@ public class Mascota {
  
     public String dormir() {
         if (dormida) return "  😴 " + nombre + " ya está durmiendo...";
- 
-        // 🔊 Sonido de dormir
+
         Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_DUERMA);
  
         dormida = true;
@@ -93,8 +88,7 @@ public class Mascota {
  
     public String bañar() {
         if (dormida) return "  😴 " + nombre + " está durmiendo.";
- 
-        // 🔊 Sonido de bañarse
+
         Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_BAÑAR);
  
         stats.setHigiene(100);
@@ -137,8 +131,7 @@ public class Mascota {
         if (subioNivel) msg += nivelUpMsg();
         return msg;
     }
- 
-    // ── Avanza turno y puede provocar enfermedad ─────────
+
     private void avanzarTurno() {
         turno++;
         stats.pasarTurno(dormida);
@@ -147,8 +140,7 @@ public class Mascota {
         if (!enferma && stats.getHigiene() <= 30 && Math.random() < 0.10) {
             enferma = true;
         }
- 
-        // 🔊 Si la mascota muere, suena el efecto de muerte
+
         if (!stats.estaViva()) {
             Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_MUERTE);
             Reproductor_sonidos.detenerMusicaFondo();
@@ -158,10 +150,7 @@ public class Mascota {
     private String nivelUpMsg() {
         return "\n  ⭐ ¡¡SUBISTE AL NIVEL " + stats.getNivel() + "!! ¡Felicidades!";
     }
- 
-    // ════════════════════════════════════════════════════
-    //  DISPLAY
-    // ════════════════════════════════════════════════════
+
     public void mostrarEstado() {
         EstadoMascota estado = stats.getEstado(dormida);
         System.out.println("\n  ╔══════════════════════════════════════════╗");
@@ -190,8 +179,7 @@ public class Mascota {
         sb.append(String.format(" %3d%%", valor));
         return sb.toString();
     }
- 
-    // ── Getters ──────────────────────────────────────────
+
     public String getNombre()       { return nombre; }
     public String getTipo()         { return tipo; }
     public String getEmoji()        { return emoji; }

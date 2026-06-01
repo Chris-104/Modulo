@@ -13,17 +13,12 @@ public class Menu {
 	public static final String BLANCO = "\u001B[37m";
 	public static final String RESET = "\u001B[0m";
 	public static final String NEGRO = "\u001B[30m";
-			
 
     private Scanner sc;
 
     public Menu() {
         this.sc = new Scanner(System.in);
     }
-
-    // ════════════════════════════════════════════════════
-    //  MENÚ DE INICIO
-    // ════════════════════════════════════════════════════
     
     		public int mostrarMenuInicio() {
 
@@ -63,207 +58,181 @@ public class Menu {
 
     		    return leerInt();
     		}
-    		
 
-   
+    		public int mostrarMenuJuego(Mascota mascota) {
 
+    		    System.out.println();
 
-    
+    		    System.out.println(AZUL + "==========================================" + RESET);
 
-    // ════════════════════════════════════════════════════
-    //  MENÚ PRINCIPAL DEL JUEGO
-    // ════════════════════════════════════════════════════
-  
-    				public int mostrarMenuJuego(Mascota mascota) {
+    		    System.out.println(AZUL + "" + BLANCO +
+    		            "         🎮 MENU DEL JUEGO 🎮          "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println();
+    		    System.out.println(AZUL + "==========================================" + RESET);
 
-    				    System.out.println(AZUL + "==========================================" + RESET);
+    		    System.out.println(AZUL + "" + CYAN +
+    		            " Mascota: " + mascota.getEmoji() + " " +
+    		            mascota.getNombre()
+    		            + AZUL + " " + RESET);
 
-    				    System.out.println(AZUL + "" + BLANCO +
-    				            "         🎮 MENU DEL JUEGO 🎮          "
-    				            + AZUL + "" + RESET);
+    		    System.out.println(AZUL + "" + AMARILLO +
+    		            " Nivel: " + mascota.getStats().getNivel()
+    		            + "   💰 Dinero: $" +
+    		            mascota.getStats().getDinero()
+    		            + AZUL + " " + RESET);
 
-    				    System.out.println(AZUL + "==========================================" + RESET);
+    		    System.out.println(AZUL + "==========================================" + RESET);
 
-    				    System.out.println(AZUL + "" + CYAN +
-    				            " Mascota: " + mascota.getEmoji() + " " +
-    				            mascota.getNombre()
-    				            + AZUL + " " + RESET);
+    		    System.out.println(AZUL + "" + VERDE +
+    		            " 1. 🍖 Alimentar                       "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + AMARILLO +
-    				            " Nivel: " + mascota.getStats().getNivel()
-    				            + "   💰 Dinero: $" +
-    				            mascota.getStats().getDinero()
-    				            + AZUL + " " + RESET);
+    		    System.out.println(AZUL + "" + CYAN +
+    		            " 2. 🎾 Jugar                           "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "==========================================" + RESET);
+    		    System.out.println(AZUL + "" + MORADO +
+    		            " 3. 🌙 Dormir                          "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + VERDE +
-    				            " 1. 🍖 Alimentar                       "
-    				            + AZUL + "" + RESET);
+    		    System.out.println(AZUL + "" + AMARILLO +
+    		            " 4. ☀️ Despertar                       "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + CYAN +
-    				            " 2. 🎾 Jugar                           "
-    				            + AZUL + "" + RESET);
+    		    System.out.println(AZUL + "" + CYAN +
+    		            " 5. 🛁 Bañar                           "
+    		            + AZUL + "=" + RESET);
 
-    				    System.out.println(AZUL + "" + MORADO +
-    				            " 3. 🌙 Dormir                          "
-    				            + AZUL + "" + RESET);
+    		    System.out.println(AZUL + "=" + ROJO +
+    		            " 6. 💊 Medicar                         "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + AMARILLO +
-    				            " 4. ☀️ Despertar                       "
-    				            + AZUL + "" + RESET);
+    		    System.out.println(AZUL + "" + VERDE +
+    		            " 7. 💼 Trabajar                        "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + CYAN +
-    				            " 5. 🛁 Bañar                           "
-    				            + AZUL + "=" + RESET);
+    		    System.out.println(AZUL + "" + AMARILLO +
+    		            " 8. 🏪 Ir a la tienda                  "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "=" + ROJO +
-    				            " 6. 💊 Medicar                         "
-    				            + AZUL + "" + RESET);
+    		    System.out.println(AZUL + "" + CYAN +
+    		            " 9. 📊 Ver estadísticas                "
+    		            + AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + VERDE +
-    				            " 7. 💼 Trabajar                        "
-    				            + AZUL + "" + RESET);
+				System.out.println(AZUL + "" + ROJO +
+						"10. 🚪 Volver al menú                  "
+						+ AZUL + "" + RESET);
 
-    				    System.out.println(AZUL + "" + AMARILLO +
-    				            " 8. 🏪 Ir a la tienda                  "
-    				            + AZUL + "" + RESET);
+				System.out.println(AZUL + "==========================================" + RESET);
 
-    				    System.out.println(AZUL + "" + CYAN +
-    				            " 9. 📊 Ver estadísticas                "
-    				            + AZUL + "" + RESET);
+				System.out.print(MORADO + "\n👉 Tu opción: " + RESET);
 
-    				    System.out.println(AZUL + "" + ROJO +
-    				            "10. 🚪 Volver al menú                  "
-    				            + AZUL + "" + RESET);
-
-    				    System.out.println(AZUL + "==========================================" + RESET);
-
-    				    System.out.print(MORADO + "\n👉 Tu opción: " + RESET);
-
-    				    return leerInt();
-    				}
+				return leerInt();
+			}
     				
+			public Mascota crearMascota() {
 
-    // ════════════════════════════════════════════════════
-    //  CREAR MASCOTA
-    // ════════════════════════════════════════════════════
-    				
-    						public Mascota crearMascota() {
+				limpiarPantalla();
 
-    						    limpiarPantalla();
+				System.out.println(AZUL + "==========================================" + RESET);
 
-    						    System.out.println(AZUL + "==========================================" + RESET);
+				System.out.println(AZUL + "" + BLANCO +
+						"        🌟 CREAR TU MASCOTA 🌟         "
+						+ AZUL + "" + RESET);
 
-    						    System.out.println(AZUL + "" + BLANCO +
-    						            "        🌟 CREAR TU MASCOTA 🌟         "
-    						            + AZUL + "" + RESET);
+				System.out.println(AZUL + "==========================================" + RESET);
 
-    						    System.out.println(AZUL + "==========================================" + RESET);
+				System.out.print(CYAN +
+						"\n✏️ ¿Cómo se llamará tu mascota?: "
+						+ RESET);
 
-    						    System.out.print(CYAN +
-    						            "\n✏️ ¿Cómo se llamará tu mascota?: "
-    						            + RESET);
+				String nombre = sc.nextLine().trim();
 
-    						    String nombre = sc.nextLine().trim();
+				if (nombre.isEmpty()) {
+					nombre = "Sin nombre";
+				}
 
-    						    if (nombre.isEmpty()) {
-    						        nombre = "Sin nombre";
-    						    }
+				System.out.println(AMARILLO +
+						"\n🐾 Elige el tipo de mascota:"
+						+ RESET);
 
-    						    System.out.println(AMARILLO +
-    						            "\n🐾 Elige el tipo de mascota:"
-    						            + RESET);
+				System.out.println(VERDE +
+						" 1. 🐶 Perro      2. 🐱 Gato"
+						+ RESET);
 
-    						    System.out.println(VERDE +
-    						            " 1. 🐶 Perro      2. 🐱 Gato"
-    						            + RESET);
+				System.out.println(CYAN +
+						" 3. 🐲 Dragón     4. 🐰 Conejo"
+						+ RESET);
 
-    						    System.out.println(CYAN +
-    						            " 3. 🐲 Dragón     4. 🐰 Conejo"
-    						            + RESET);
+				System.out.println(MORADO +
+						" 5. 🐼 Panda      6. 🦊 Zorro"
+						+ RESET);
 
-    						    System.out.println(MORADO +
-    						            " 5. 🐼 Panda      6. 🦊 Zorro"
-    						            + RESET);
+				System.out.println(AMARILLO +
+						" 7. 🐺 Lobo       8. ✏️ Otro"
+						+ RESET);
 
-    						    System.out.println(AMARILLO +
-    						            " 7. 🐺 Lobo       8. ✏️ Otro"
-    						            + RESET);
+				System.out.println(AZUL + "==========================================" + RESET);
 
-    						    System.out.println(AZUL + "==========================================" + RESET);
+				System.out.print(MORADO +
+						"\n👉 Opción: "
+						+ RESET);
 
-    						    System.out.print(MORADO +
-    						            "\n👉 Opción: "
-    						            + RESET);
+				int tipoOp = leerInt();
 
-    						    int tipoOp = leerInt();
+				String tipo;
 
-    						    String tipo;
+				switch (tipoOp) {
 
-    						    switch (tipoOp) {
+					case 1:
+						tipo = "perro";
+						break;
+					case 2:
+						tipo = "gato";
+						break;
+					case 3:
+						tipo = "dragón";
+						break;
+					case 4:
+						tipo = "conejo";
+						break;
+    				case 5:
+						tipo = "panda";
+						break;
+    				case 6:
+						tipo = "zorro";
+						break;
+					case 7:
+						tipo = "lobo";
+						break;
+    				default:
 
-    						        case 1:
-    						            tipo = "perro";
-    						            break;
+						System.out.print(CYAN +
+								"\n✏️ Escribe el tipo: "
+								+ RESET);
 
-    						        case 2:
-    						            tipo = "gato";
-    						            break;
+						tipo = sc.nextLine().trim();
 
-    						        case 3:
-    						            tipo = "dragón";
-    						            break;
+						if (tipo.isEmpty()) {
+							tipo = "animal";
+						}
+				}
 
-    						        case 4:
-    						            tipo = "conejo";
-    						            break;
+				System.out.println(VERDE +
+						"\n✨ ¡" + nombre + " el/la " + tipo +
+						" ha llegado a tu vida!"
+						+ RESET);
 
-    						        case 5:
-    						            tipo = "panda";
-    						            break;
+				System.out.println(AMARILLO +
+						"💖 ¡Cuídalo/a bien!"
+						+ RESET);
+ 				pausa();
 
-    						        case 6:
-    						            tipo = "zorro";
-    						            break;
-
-    						        case 7:
-    						            tipo = "lobo";
-    						            break;
-
-    						        default:
-
-    						            System.out.print(CYAN +
-    						                    "\n✏️ Escribe el tipo: "
-    						                    + RESET);
-
-    						            tipo = sc.nextLine().trim();
-
-    						            if (tipo.isEmpty()) {
-    						                tipo = "animal";
-    						            }
-    						    }
-
-    						    System.out.println(VERDE +
-    						            "\n✨ ¡" + nombre + " el/la " + tipo +
-    						            " ha llegado a tu vida!"
-    						            + RESET);
-
-    						    System.out.println(AMARILLO +
-    						            "💖 ¡Cuídalo/a bien!"
-    						            + RESET);
-
-    						    pausa();
-
-    						    return new Mascota(nombre, tipo);
-    						}
+				 return new Mascota(nombre, tipo);
+	}
     						
 
-    // ════════════════════════════════════════════════════
-    //  PANTALLAS INFORMATIVAS
-    // ════════════════════════════════════════════════════
     public void mostrarInstrucciones() {
         limpiarPantalla();
         System.out.println("  ╔══════════════════════════════════════════╗");
@@ -300,7 +269,7 @@ public class Menu {
         System.out.println("  ╠══════════════════════════════════════════╣");
         System.out.println("  ║                                          ║");
         System.out.println("  ║   Mascota Virtual - POO Edition          ║");
-        System.out.println("  ║   Versión 2.0                            ║");
+        System.out.println("  ║   Versión 2.1                            ║");
         System.out.println("  ║                                          ║");
         System.out.println("  ║   Desarrollado con:                      ║");
         System.out.println("  ║   ☕ Java + Programación Orientada       ║");
@@ -328,9 +297,6 @@ public class Menu {
         pausa();
     }
 
-    // ════════════════════════════════════════════════════
-    //  HELPERS
-    // ════════════════════════════════════════════════════
     public void limpiarPantalla() {
         for (int i = 0; i < 3; i++) System.out.println();
     }
@@ -341,21 +307,15 @@ public class Menu {
     }
 
      int leerInt() {
+		while (!sc.hasNextInt()) {
+			System.out.print("Ingresa un número válido: ");
+			sc.next();
+		}
 
-    		    while (!sc.hasNextInt()) {
+		int numero = Integer.parseInt(sc.nextLine());
 
-    		        System.out.print("Ingresa un número válido: ");
-    		        sc.next();
-    		    }
-
-    		    int numero = Integer.parseInt(sc.nextLine());
-
-    		    return numero;
-    		}
-    	
-
-        
-    
+		return numero;
+	}
 
     public Scanner getSc() { return sc; }
 }

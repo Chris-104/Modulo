@@ -12,7 +12,7 @@ public class Reproductor_sonidos {
     private static boolean sonidoActivado = true;
 
     public static final String MUSICA_FONDO = "sounds/musica_fondo.wav";
-    public static final String SFX_BAÑAR    = "sounds/ducha.wav";   // ← tenías ducha.wav.wav (doble extensión)
+    public static final String SFX_BAÑAR    = "sounds/ducha.wav";
     public static final String SFX_MUERTE   = "sounds/muerte.wav";
     public static final String SFX_COMER    = "sounds/comer.wav";
     public static final String SFX_DUERMA   = "sounds/dormir.wav";
@@ -30,9 +30,7 @@ public class Reproductor_sonidos {
             musicaFondo.open(audio);
             musicaFondo.loop(Clip.LOOP_CONTINUOUSLY);
             musicaFondo.start();
-        } catch (Exception e) {
-            // Sigue sin sonido si hay error
-        }
+        } catch (Exception e) {   }
     }
 
     public static void detenerMusicaFondo() {
@@ -57,9 +55,7 @@ public class Reproductor_sonidos {
 
                 Thread.sleep(clip.getMicrosecondLength() / 1000);
                 clip.close();
-            } catch (Exception e) {
-                // Silencio si hay error
-            }
+            } catch (Exception e) {  }
         }).start();
     }
 
