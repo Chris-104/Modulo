@@ -51,6 +51,7 @@ public class Menu {
     		    System.out.println(AZUL + "" + ROJO +
     		            " 4. Salir                             "
     		            + AZUL + "" + RESET);
+    		   
 
     		    System.out.println(AZUL + "==========================================" + RESET);
 
@@ -342,7 +343,7 @@ public class Menu {
 			            "Mascota Virtual - POO Edition" + RESET);
 
 			    System.out.println(AMARILLO +
-			            "Version 2.1" + RESET);
+			            "Version BETA" + RESET);
 
 			    System.out.println();
 
@@ -358,25 +359,17 @@ public class Menu {
 			    System.out.println();
 
 			    System.out.println(MORADO +
-			            "📚 Clases usadas:" + RESET);
+			            "📚 Desarrolladores implicados:" + RESET);
 
 			    System.out.println(BLANCO +
-			            "• Mascota" + RESET);
+			            "• Christian Alexander Hernandez Rivera" + RESET);
 
 			    System.out.println(BLANCO +
-			            "• Estadisticas" + RESET);
+			            "• Steven Emmanuel Guerrero Magaña" + RESET);
 
 			    System.out.println(BLANCO +
-			            "• EstadoMascota" + RESET);
+			            "• Carlos Alexander Ayala Martinez" + RESET);
 
-			    System.out.println(BLANCO +
-			            "• Tienda" + RESET);
-
-			    System.out.println(BLANCO +
-			            "• Menu" + RESET);
-
-			    System.out.println(BLANCO +
-			            "• JuegoMascota" + RESET);
 
 			    System.out.println();
 

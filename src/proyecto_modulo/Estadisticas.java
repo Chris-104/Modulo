@@ -34,8 +34,8 @@ public class Estadisticas {
 	        if (!dormida) {
 	            hambre    = Math.min(100, hambre    + 6);
 	            energia   = Math.max(0,   energia   - 5);
-	            felicidad = Math.max(0,   felicidad - 4);
-	            higiene   = Math.max(0,   higiene   - 3);
+	            felicidad = Math.max(0,   felicidad - 5);
+	            higiene   = Math.max(0,   higiene   - 5);
 	            if (hambre >= 80) salud = Math.max(0, salud - 6);
 	            if (higiene <= 20) salud = Math.max(0, salud - 10);
 	        } else {
@@ -58,18 +58,25 @@ public class Estadisticas {
 	    }
 
 	    public EstadoMascota getEstado(boolean dormida) {
+	        // condiciones de muerte (revisar primero para que sean alcanzables)
 	        if (salud <= 0)        return EstadoMascota.MUERTO;
+	        if (energia <= 10)     return EstadoMascota.MUERTO;
+	        if (felicidad <= 15)   return EstadoMascota.MUERTO;
+	        if (hambre >= 100)     return EstadoMascota.MUERTO;
+
 	        if (dormida)           return EstadoMascota.DORMIDO;
 	        if (salud <= 30)       return EstadoMascota.ENFERMO;
 	        if (hambre >= 80)      return EstadoMascota.HAMBRIENTO;
 	        if (energia <= 20)     return EstadoMascota.CANSADO;
 	        if (felicidad <= 25)   return EstadoMascota.TRISTE;
 	        if (felicidad >= 75)   return EstadoMascota.FELIZ;
+
 	        return EstadoMascota.NORMAL;
 	    }
-	 
+
 	    public boolean estaViva() {
-	        return salud > 0 && hambre < 100;
+	        // se muere si: salud <= 0, energia <= 10, felicidad <= 15, o hambre >= 100
+	        return salud > 0 && energia > 10 && felicidad > 15 && hambre < 100;
 	    }
 
 	    public int getHambre()      { return hambre; }
