@@ -71,4 +71,9 @@ public class Reproductor_sonidos {
     }
 
     public static boolean isSonidoActivado() { return sonidoActivado; }
+
+	public static void reiniciarMusica() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -177,7 +177,7 @@ public class Menu {
 						" 7. 🐺 Lobo       8. ✏️ Otro"
 						+ RESET);
 
-				System.out.println(AZUL + "==========================================" + RESET);
+				System.out.println(AZUL + "========= =================================" + RESET);
 
 				String tipo;
 
@@ -245,69 +245,191 @@ public class Menu {
 	}
     						
 
-    public void mostrarInstrucciones() {
-        limpiarPantalla();
-        System.out.println("  ============================================");
-        System.out.println("               📖 INSTRUCCIONES               ");
-        System.out.println("  ============================================");
-        System.out.println("                                              ");
-        System.out.println("     🎯 OBJETIVO:                             ");
-        System.out.println("     Cuida a tu mascota manteniéndola         ");
-        System.out.println("     feliz, sana y bien alimentada.           ");
-        System.out.println("                                              ");
-        System.out.println("     📊 ESTADÍSTICAS:                         ");
-        System.out.println("     🍗 Hambre   → Aliméntala si sube         ");
-        System.out.println("     ⚡ Energía  → Hazla dormir si baja       ");
-        System.out.println("     😊 Felicidad→ Juega con ella             ");
-        System.out.println("     ❤️  Salud    → Médica si enferma         ");
-        System.out.println("     🛁 Higiene  → Báñala regularmente        ");
-        System.out.println("                                              ");
-        System.out.println("     ⚠️  GAME OVER si:                        ");
-        System.out.println("     - Hambre llega a 100                     ");
-        System.out.println("     - Salud llega a 0                        ");
-        System.out.println("                                              ");
-        System.out.println("     💡 CONSEJOS:                             ");
-        System.out.println("     - Trabaja para ganar dinero              ");
-        System.out.println("     - Usa la tienda para comprar items       ");
-        System.out.println("     - Gana XP para subir de nivel            ");
-        System.out.println("  ============================================");
-        pausa();
-    }
 
-    public void mostrarAcercaDe() {
-        limpiarPantalla();
-        System.out.println("  =========================================== ");
-        System.out.println("             🏆 ACERCA DEL JUEGO              ");
-        System.out.println("  =========================================== ");
-        System.out.println("                                              ");
-        System.out.println("      Mascota Virtual - POO Edition           ");
-        System.out.println("      Versión 2.1                             ");
-        System.out.println("                                              ");
-        System.out.println("      Desarrollado con:                       ");
-        System.out.println("      ☕ Java + Programación Orientada        ");
-        System.out.println("         a Objetos                            ");
-        System.out.println("                                              ");
-        System.out.println("      Clases usadas:                          ");
-        System.out.println("      • Mascota       • Estadisticas          ");
-        System.out.println("      • EstadoMascota • Tienda                ");
-        System.out.println("      • Menu          • JuegoMascota          ");
-        System.out.println("                                              ");
-        System.out.println("  =========================================== ");
-        pausa();
-    }
+	public void mostrarInstrucciones() {
 
-    public void mostrarGameOver(Mascota mascota) {
-        System.out.println("\n============================================");
-        System.out.println("                 💀 GAME OVER                 ");
-        System.out.println("  ============================================");
-        System.out.printf ("     %s %s ya no está con nosotros...%n",
-                mascota.getEmoji(), mascota.getNombre());
-        System.out.printf ("     Vivió %d día(s) y llegó al nivel %d.%n",
-                mascota.getStats().getDiasVividos(), mascota.getStats().getNivel());
-        System.out.println("     ¡La próxima vez cuídalo/a mejor! 💔      ");
-        System.out.println("  ============================================");
-        pausa();
-    }
+	    limpiarPantalla();
+
+	    System.out.println(AZUL + "===========================================" + RESET);
+
+	    System.out.println(BLANCO +
+	            "             📖 INSTRUCCIONES              "
+	            + RESET);
+
+	    System.out.println(AZUL + "===========================================" + RESET);
+
+	    System.out.println();
+
+	    System.out.println(AMARILLO +
+	            "🎯 OBJETIVO:" + RESET);
+
+	    System.out.println(BLANCO +
+	            "Cuida a tu mascota manteniendola feliz,");
+
+	    System.out.println(BLANCO +
+	            "sana y bien alimentada." + RESET);
+
+	    System.out.println();
+
+	    System.out.println(CYAN +
+	            "📊 ESTADISTICAS:" + RESET);
+
+	    System.out.println(VERDE +
+	            "🍗 Hambre    → Alimentala si sube" + RESET);
+
+	    System.out.println(AMARILLO +
+	            "⚡ Energia   → Hazla dormir si baja" + RESET);
+
+	    System.out.println(MORADO +
+	            "😊 Felicidad → Juega con ella" + RESET);
+
+	    System.out.println(ROJO +
+	            "❤️ Salud     → Medicala si enferma" + RESET);
+
+	    System.out.println(CYAN +
+	            "🛁 Higiene   → Bañala regularmente" + RESET);
+
+	    System.out.println();
+
+	    System.out.println(ROJO +
+	            "⚠️ GAME OVER SI:" + RESET);
+
+	    System.out.println(BLANCO +
+	            "- Hambre llega a 100" + RESET);
+
+	    System.out.println(BLANCO +
+	            "- Salud llega a 0" + RESET);
+
+	    System.out.println();
+
+	    System.out.println(VERDE +
+	            "💡 CONSEJOS:" + RESET);
+
+	    System.out.println(BLANCO +
+	            "- Trabaja para ganar dinero" + RESET);
+
+	    System.out.println(BLANCO +
+	            "- Usa la tienda para comprar items" + RESET);
+
+	    System.out.println(BLANCO +
+	            "- Gana XP para subir de nivel" + RESET);
+
+	    System.out.println();
+
+	    System.out.println(AZUL + "===========================================" + RESET);
+
+	    pausa();
+	}
+
+
+
+	
+			public void mostrarAcercaDe() {
+
+			    limpiarPantalla();
+
+			    System.out.println(AZUL + "===========================================" + RESET);
+
+			    System.out.println(BLANCO +
+			            "           🏆 ACERCA DEL JUEGO 🏆          "
+			            + RESET);
+
+			    System.out.println(AZUL + "===========================================" + RESET);
+
+			    System.out.println();
+
+			    System.out.println(CYAN +
+			            "Mascota Virtual - POO Edition" + RESET);
+
+			    System.out.println(AMARILLO +
+			            "Version 2.1" + RESET);
+
+			    System.out.println();
+
+			    System.out.println(VERDE +
+			            "💻 Desarrollado con:" + RESET);
+
+			    System.out.println(BLANCO +
+			            "☕ Java + Programacion Orientada" + RESET);
+
+			    System.out.println(BLANCO +
+			            "a Objetos" + RESET);
+
+			    System.out.println();
+
+			    System.out.println(MORADO +
+			            "📚 Clases usadas:" + RESET);
+
+			    System.out.println(BLANCO +
+			            "• Mascota" + RESET);
+
+			    System.out.println(BLANCO +
+			            "• Estadisticas" + RESET);
+
+			    System.out.println(BLANCO +
+			            "• EstadoMascota" + RESET);
+
+			    System.out.println(BLANCO +
+			            "• Tienda" + RESET);
+
+			    System.out.println(BLANCO +
+			            "• Menu" + RESET);
+
+			    System.out.println(BLANCO +
+			            "• JuegoMascota" + RESET);
+
+			    System.out.println();
+
+			    System.out.println(AZUL + "===========================================" + RESET);
+
+			    pausa();
+			}
+			
+
+			
+					public void mostrarGameOver(Mascota mascota) {
+
+					    System.out.println();
+
+					    System.out.println(ROJO + "===========================================" + RESET);
+
+					    System.out.println(BLANCO +
+					            "              💀 GAME OVER 💀             "
+					            + RESET);
+
+					    System.out.println(ROJO + "===========================================" + RESET);
+
+					    System.out.println();
+
+					    System.out.println(AMARILLO +
+					            mascota.getEmoji() + " " + mascota.getNombre()
+					            + " ya no esta con nosotros..."
+					            + RESET);
+
+					    System.out.println(CYAN +
+					            "📅 Vivio " + mascota.getStats().getDiasVividos()
+					            + " dia(s)"
+					            + RESET);
+
+					    System.out.println(VERDE +
+					            "⭐ Llego al nivel "
+					            + mascota.getStats().getNivel()
+					            + RESET);
+
+					    System.out.println();
+
+					    System.out.println(ROJO +
+					            "💔 La proxima vez cuidalo/a mejor."
+					            + RESET);
+
+					    System.out.println();
+
+					    System.out.println(ROJO + "===========================================" + RESET);
+
+					    pausa();
+					}
+				
+
 
     public void limpiarPantalla() {
         for (int i = 0; i < 3; i++) System.out.println();

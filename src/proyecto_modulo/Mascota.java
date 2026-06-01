@@ -1,7 +1,17 @@
 package proyecto_modulo;
  
 public class Mascota {
- 
+	public static final String ROJO = "\u001B[31m";
+	public static final String VERDE = "\u001B[32m";
+	public static final String AMARILLO = "\u001B[33m";
+	public static final String AZUL = "\u001B[34m";
+	public static final String MORADO = "\u001B[35m";
+	public static final String CYAN = "\u001B[36m";
+	public static final String BLANCO = "\u001B[37m";
+	public static final String RESET1 = "\u001B[0m";
+	public static final String NEGRO = "\u001B[30m";
+	
+	 
     private String nombre;
     private String tipo;
     private String emoji;
@@ -151,24 +161,74 @@ public class Mascota {
         return "\n  ⭐ ¡¡SUBISTE AL NIVEL " + stats.getNivel() + "!! ¡Felicidades!";
     }
 
-    public void mostrarEstado() {
-        EstadoMascota estado = stats.getEstado(dormida);
-        System.out.println("\n===========================================");
-        System.out.printf ("     %s %s   Día %d   Nivel %d%n",
-                emoji, nombre, stats.getDiasVividos(), stats.getNivel());
-        System.out.printf ("     Estado: %-35s%n", estado.getDescripcion());
-        System.out.printf ("     💰 Dinero: $%-5d  XP: %d/%d%n",
-                stats.getDinero(), stats.getExperiencia(), stats.getXpNecesaria());
-        System.out.println("  ===========================================");
-        System.out.printf ("     🍗 Hambre   : %s%n", barra(stats.getHambre(),    true));
-        System.out.printf ("     ⚡ Energía  : %s%n", barra(stats.getEnergia(),   false));
-        System.out.printf ("     😊 Felicidad: %s%n", barra(stats.getFelicidad(), false));
-        System.out.printf ("     ❤️  Salud    : %s%n", barra(stats.getSalud(),     false));
-        System.out.printf ("     🛁 Higiene  : %s%n", barra(stats.getHigiene(),   false));
-        if (enferma)
-        System.out.println("     ⚠️  ¡Está enfermo/a! Usa medicina.      ");
-        System.out.println("  ===========================================");
-    }
+   
+    		public void mostrarEstado() {
+
+    		    EstadoMascota estado = stats.getEstado(dormida);
+
+    		    System.out.println();
+
+    		    
+				System.out.println(AZUL + "===========================================" + AZUL);
+
+    		    System.out.println(BLANCO +
+    		            "      " + emoji + " " + nombre +
+    		            " | Dia " + stats.getDiasVividos() +
+    		            " | Nivel " + stats.getNivel()
+    		            + AZUL);
+
+    		    System.out.println(AZUL + "===========================================" + AZUL);
+
+    		    System.out.println(CYAN +
+    		            "Estado: " + estado.getDescripcion()
+    		            + AZUL);
+
+    		    System.out.println(AMARILLO +
+    		            "💰 Dinero: $" + stats.getDinero()
+    		            + AZUL);
+
+    		    System.out.println(VERDE +
+    		            "⭐ XP: " + stats.getExperiencia()
+    		            + "/" + stats.getXpNecesaria()
+    		            + AZUL);
+
+    		    System.out.println(AZUL + "===========================================" + AZUL);
+
+    		    System.out.println(ROJO +
+    		            "🍗 Hambre    : " +
+    		            barra(stats.getHambre(), true)
+    		            + AZUL);
+
+    		    System.out.println(AMARILLO +
+    		            "⚡ Energia   : " +
+    		            barra(stats.getEnergia(), false)
+    		            + AZUL);
+
+    		    System.out.println(MORADO +
+    		            "😊 Felicidad : " +
+    		            barra(stats.getFelicidad(), false)
+    		            + AZUL);
+
+    		    System.out.println(CYAN +
+    		            "❤️ Salud     : " +
+    		            barra(stats.getSalud(), false)
+    		            + AZUL);
+
+    		    System.out.println(VERDE +
+    		            "🛁 Higiene   : " +
+    		            barra(stats.getHigiene(), false)
+    		            + AZUL);
+
+    		    if (enferma) {
+    		        System.out.println(ROJO +
+    		                "\n⚠️ ¡Tu mascota esta enferma! Usa medicina."
+    		                + AZUL);
+    		    }
+
+    		    System.out.println(AZUL + "===========================================" + AZUL);
+    		}
+    		
+
  
     private String barra(int valor, boolean invertido) {
         int bloques = valor / 10;
