@@ -109,17 +109,17 @@ public class Mascota_virtual {
     private static void mostrarMenuAudioEnJuego(Menu menu) {
         boolean enAudio = true;
         while (enAudio) {
-            System.out.println("\n  ╔══════════════════════════════════════════╗");
-            System.out.println("  ║          🎵 CONFIGURACIÓN DE AUDIO      ║");
-            System.out.println("  ╠══════════════════════════════════════════╣");
-            System.out.printf ("  ║  Sonido global: %-25s║%n",
+            System.out.println("\n===========================================");
+            System.out.println("             🎵 CONFIGURACIÓN DE AUDIO       ");
+            System.out.println("  ===========================================");
+            System.out.printf ("     Sonido global: %-25s║%n",
                     Reproductor_sonidos.isSonidoActivado() ? "✅ Activado" : "❌ Desactivado");
-            System.out.println("  ╠══════════════════════════════════════════╣");
-            System.out.println("  ║  1. 🔊 Activar / Desactivar todo sonido ║");
-            System.out.println("  ║  2. 🎵 Reiniciar música de fondo        ║");
-            System.out.println("  ║  3. 🔇 Detener música de fondo          ║");
-            System.out.println("  ║  4. 🔙 Volver al juego                  ║");
-            System.out.println("  ╚══════════════════════════════════════════╝");
+            System.out.println("  ===========================================");
+            System.out.println("     1. 🔊 Activar / Desactivar todo sonido  ");
+            System.out.println("     2. 🎵 Reiniciar música de fondo         ");
+            System.out.println("     3. 🔇 Detener música de fondo           ");
+            System.out.println("     4. 🔙 Volver al juego                   ");
+            System.out.println("  ===========================================");
             System.out.print("  👉 Opción: ");
             int op = menu.leerInt();
  
@@ -148,26 +148,26 @@ public class Mascota_virtual {
 
     private static void mostrarEstadisticasDetalladas(Mascota mascota) {
         Estadisticas s = mascota.getStats();
-        System.out.println("\n  ╔══════════════════════════════════════════╗");
-        System.out.println("  ║       📊 ESTADÍSTICAS DETALLADAS        ║");
-        System.out.println("  ╠══════════════════════════════════════════╣");
-        System.out.printf ("  ║  Nombre  : %-31s║%n", mascota.getNombre());
-        System.out.printf ("  ║  Tipo    : %-31s║%n", mascota.getEmoji() + " " + mascota.getTipo());
-        System.out.printf ("  ║  Nivel   : %-31s║%n", s.getNivel());
-        System.out.printf ("  ║  XP      : %d / %-26s║%n", s.getExperiencia(), s.getXpNecesaria());
-        System.out.printf ("  ║  Días    : %-31s║%n", s.getDiasVividos());
-        System.out.printf ("  ║  Dinero  : $%-30s║%n", s.getDinero());
-        System.out.println("  ╠══════════════════════════════════════════╣");
-        System.out.printf ("  ║  🍗 Hambre   : %3d%%                     ║%n", s.getHambre());
-        System.out.printf ("  ║  ⚡ Energía  : %3d%%                     ║%n", s.getEnergia());
-        System.out.printf ("  ║  😊 Felicidad: %3d%%                     ║%n", s.getFelicidad());
-        System.out.printf ("  ║  ❤️  Salud    : %3d%%                     ║%n", s.getSalud());
-        System.out.printf ("  ║  🛁 Higiene  : %3d%%                     ║%n", s.getHigiene());
-        System.out.println("  ╠══════════════════════════════════════════╣");
-        System.out.printf ("  ║  Estado  : %-31s║%n",
+        System.out.println("\n===========================================");
+        System.out.println("          📊 ESTADÍSTICAS DETALLADAS         ");
+        System.out.println("  ===========================================");
+        System.out.printf ("     Nombre  : %-31s %n", mascota.getNombre());
+        System.out.printf ("     Tipo    : %-31s %n", mascota.getEmoji() + " " + mascota.getTipo());
+        System.out.printf ("     Nivel   : %-31s %n", s.getNivel());
+        System.out.printf ("     XP      : %d / %-26s %n", s.getExperiencia(), s.getXpNecesaria());
+        System.out.printf ("     Días    : %-31s %n", s.getDiasVividos());
+        System.out.printf ("     Dinero  : $%-30s %n", s.getDinero());
+        System.out.println("  ===========================================");
+        System.out.printf ("     🍗 Hambre   : %3d%%                      %n", s.getHambre());
+        System.out.printf ("     ⚡ Energía  : %3d%%                      %n", s.getEnergia());
+        System.out.printf ("     😊 Felicidad: %3d%%                      %n", s.getFelicidad());
+        System.out.printf ("     ❤️  Salud    : %3d%%                      %n", s.getSalud());
+        System.out.printf ("     🛁 Higiene  : %3d%%                      %n", s.getHigiene());
+        System.out.println("  ===========================================");
+        System.out.printf ("     Estado  : %-31s %n",
                 s.getEstado(mascota.isDormida()).getDescripcion());
-        System.out.printf ("  ║  Enferma : %-31s║%n",
+        System.out.printf ("     Enferma : %-31s %n",
                 mascota.isEnferma() ? "Sí 🤒" : "No ✅");
-        System.out.println("  ╚══════════════════════════════════════════╝");
+        System.out.println("  ===========================================");
     }
 }

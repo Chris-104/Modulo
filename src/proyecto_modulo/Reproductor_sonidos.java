@@ -1,4 +1,4 @@
-package proyecto_modulo;
+ package proyecto_modulo;
 
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;  // ← faltaba
