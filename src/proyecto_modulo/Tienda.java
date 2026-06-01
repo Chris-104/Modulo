@@ -47,8 +47,8 @@ public class Tienda {
                 System.out.printf("        Efecto: %-30s  %n", p.efecto);
                 System.out.println("                                          ");
 
-                System.out.printf("       Efecto: %-30s ║%n", p.efecto);
-                System.out.println("                                        ");
+//                System.out.printf("       Efecto: %-30s ║%n", p.efecto);
+//                System.out.println("                                        ");
 
             }
             System.out.println("     0. Salir de la tienda                    ");
@@ -62,7 +62,7 @@ public class Tienda {
 
                 comprar(mascota, PRODUCTOS[op - 1],sc);
 
-            	comprar(mascota, PRODUCTOS[op - 1],sc);
+//            	comprar(mascota, PRODUCTOS[op - 1],sc);
 
             } else {
                 System.out.println("  ❌ Opción no válida.");
