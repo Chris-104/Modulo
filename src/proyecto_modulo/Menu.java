@@ -102,9 +102,9 @@ public class Menu {
 
     		    System.out.println(AZUL + "" + CYAN +
     		            " 5. 🛁 Bañar                           "
-    		            + AZUL + "=" + RESET);
+    		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "=" + ROJO +
+    		    System.out.println(AZUL + "" + ROJO +
     		            " 6. 💊 Medicar                         "
     		            + AZUL + "" + RESET);
 
@@ -121,7 +121,11 @@ public class Menu {
     		            + AZUL + "" + RESET);
 
 				System.out.println(AZUL + "" + ROJO +
-						"10. 🚪 Volver al menú                  "
+						" 10.🚪 Ver menu sonido                  "
+						+ AZUL + "" + RESET);
+
+				System.out.println(AZUL + "" + CYAN +
+						" 11.📊 Volver a menu principal          "
 						+ AZUL + "" + RESET);
 
 				System.out.println(AZUL + "==========================================" + RESET);
