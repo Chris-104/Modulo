@@ -245,19 +245,19 @@ public class Menu {
         System.out.println("  ║                                          ║");
         System.out.println("  ║  📊 ESTADÍSTICAS:                        ║");
         System.out.println("  ║  🍗 Hambre   → Aliméntala si sube        ║");
-        System.out.println("  ║  ⚡ Energía  → Hazla dormir si baja      ║");
+        System.out.println("  ║  ⚡ Energía  → Hazla dormir si baja       ║");
         System.out.println("  ║  😊 Felicidad→ Juega con ella            ║");
-        System.out.println("  ║  ❤️  Salud    → Médica si enferma         ║");
+        System.out.println("  ║  ❤️  Salud    → Médica si enferma        ║");
         System.out.println("  ║  🛁 Higiene  → Báñala regularmente       ║");
         System.out.println("  ║                                          ║");
         System.out.println("  ║  ⚠️  GAME OVER si:                       ║");
         System.out.println("  ║  - Hambre llega a 100                    ║");
-        System.out.println("  ║  - Salud llega a 0                      ║");
+        System.out.println("  ║  - Salud llega a 0                       ║");
         System.out.println("  ║                                          ║");
-        System.out.println("  ║  💡 CONSEJOS:                           ║");
-        System.out.println("  ║  - Trabaja para ganar dinero            ║");
-        System.out.println("  ║  - Usa la tienda para comprar items     ║");
-        System.out.println("  ║  - Gana XP para subir de nivel          ║");
+        System.out.println("  ║  💡 CONSEJOS:                            ║");
+        System.out.println("  ║  - Trabaja para ganar dinero             ║");
+        System.out.println("  ║  - Usa la tienda para comprar items      ║");
+        System.out.println("  ║  - Gana XP para subir de nivel           ║");
         System.out.println("  ╚═════════════════════════════════════════");
         pausa();
     }
@@ -265,7 +265,7 @@ public class Menu {
     public void mostrarAcercaDe() {
         limpiarPantalla();
         System.out.println("  ╔══════════════════════════════════════════╗");
-        System.out.println("  ║          🏆 ACERCA DEL JUEGO            ║");
+        System.out.println("  ║          🏆 ACERCA DEL JUEGO             ║");
         System.out.println("  ╠══════════════════════════════════════════╣");
         System.out.println("  ║                                          ║");
         System.out.println("  ║   Mascota Virtual - POO Edition          ║");
