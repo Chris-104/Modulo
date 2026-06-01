@@ -12,7 +12,7 @@ public class Reproductor_sonidos {
     private static boolean sonidoActivado = true;
 
     public static final String MUSICA_FONDO = "sounds/musica_fondo.wav";
-    public static final String SFX_BAÑAR    = "sounds/ducha.wav";
+    public static final String SFX_BAÑAR    = "sounds/ducha.wav.wav";
     public static final String SFX_MUERTE   = "sounds/muerte.wav";
     public static final String SFX_COMER    = "sounds/comer.wav";
     public static final String SFX_DUERMA   = "sounds/dormir.wav";
