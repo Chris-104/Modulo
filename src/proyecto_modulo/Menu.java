@@ -20,7 +20,7 @@ public class Menu {
         this.sc = new Scanner(System.in);
     }
     
-    		public int mostrarMenuInicio() {
+	public int mostrarMenuInicio() {
 
     		    limpiarPantalla();
 
@@ -59,7 +59,7 @@ public class Menu {
     		    return leerInt();
     		}
 
-    		public int mostrarMenuJuego(Mascota mascota) {
+    public int mostrarMenuJuego(Mascota mascota) {
 
     		    System.out.println();
 
@@ -135,7 +135,7 @@ public class Menu {
 				return leerInt();
 			}
     				
-			public Mascota crearMascota() {
+	public Mascota crearMascota() {
 
 				limpiarPantalla();
 
@@ -179,13 +179,16 @@ public class Menu {
 
 				System.out.println(AZUL + "==========================================" + RESET);
 
+				String tipo;
+
+			while (true) {
 				System.out.print(MORADO +
 						"\n👉 Opción: "
 						+ RESET);
 
 				int tipoOp = leerInt();
 
-				String tipo;
+				tipo = "";
 
 				switch (tipoOp) {
 
@@ -210,8 +213,7 @@ public class Menu {
 					case 7:
 						tipo = "lobo";
 						break;
-    				default:
-
+					case 8:
 						System.out.print(CYAN +
 								"\n✏️ Escribe el tipo: "
 								+ RESET);
@@ -221,7 +223,13 @@ public class Menu {
 						if (tipo.isEmpty()) {
 							tipo = "animal";
 						}
+						break;
+    				default:
+						System.out.println(ROJO + "Elija una opcion valida" + RESET);
+						continue;
 				}
+				break;
+			}
 
 				System.out.println(VERDE +
 						"\n✨ ¡" + nombre + " el/la " + tipo +
