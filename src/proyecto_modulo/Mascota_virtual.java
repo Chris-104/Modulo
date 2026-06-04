@@ -117,9 +117,17 @@ public class Mascota_virtual {
     }
 
     
-    		private static void mostrarMenuAudioEnJuego(Menu menu) {
+    /**
+     * Muestra el submenú de configuración de audio durante la partida.
+     *
+     * CORRECCIÓN APLICADA: Se eliminó un bloque 'switch' duplicado que existía
+     * después del 'while'. Ese código se ejecutaba siempre al salir del bucle
+     * porque la variable 'op' estaba forzada a 0, cayendo siempre en 'default'
+     * e imprimiendo "Opción no válida" innecesariamente cuando se elegía la opción 4.
+     */
+    private static void mostrarMenuAudioEnJuego(Menu menu) {
 
-    		    boolean enAudio = true;
+        boolean enAudio = true;
 
     		    while (enAudio) {
 
@@ -198,27 +206,19 @@ public class Mascota_virtual {
     		
     	
 
-            int op = 0;
-			switch (op) {
-                case 1:
-                    Reproductor_sonidos.setSonidoActivado(!Reproductor_sonidos.isSonidoActivado());
-                    System.out.println("  🔊 Sonido: " +
-                            (Reproductor_sonidos.isSonidoActivado() ? "ACTIVADO ✅" : "DESACTIVADO ❌"));
-                    break;
-                case 2:
-                    Reproductor_sonidos.iniciarMusicaFondo();
-                    System.out.println("  🎵 Música de fondo reiniciada.");
-                    break;
-                case 3:
-                    Reproductor_sonidos.detenerMusicaFondo();
-                    System.out.println("  🔇 Música de fondo detenida.");
-                    break;
-                case 4:
-                    enAudio = false;
-                    break;
-                default:
-                    System.out.println("  ❌ Opción no válida.");
-            }
+            /* CORRECCIÓN DE BUG:
+             * Anteriormente aquí existía un segundo bloque 'switch (op)'
+             * completamente duplicado y fuera del 'while'.
+             *
+             * Problema: La variable 'op' se inicializaba en 0 de forma fija,
+             * por lo que NUNCA coincidía con los case (1, 2, 3 o 4).
+             * Al salir del bucle 'while' (cuando enAudio = false con opción 4),
+             * este código se ejecutaba obligatoriamente y caía en 'default',
+             * mostrando "❌ Opción no válida." aunque el usuario había elegido 4.
+             *
+             * Solución: Se eliminó todo el bloque switch duplicado.
+             * El método ya funciona correctamente con el switch dentro del while.
+             */
         }
     
 
