@@ -63,7 +63,7 @@ public class Mascota {
  
     public String jugar() {
         if (dormida) return "  😴 " + nombre + " está durmiendo.";
-        if (stats.getEnergia() < 20)
+        if (stats.getEnergia() < 17)
             return "  😓 " + nombre + " está muy cansado/a para jugar.";
         if (enferma)
             return "  🤒 " + nombre + " está enfermo/a, no puede jugar.";

@@ -33,9 +33,9 @@ public class Estadisticas {
 	    public void pasarTurno(boolean dormida) {
 	        if (!dormida) {
 	            hambre    = Math.min(100, hambre    + 6);
-	            energia   = Math.max(0,   energia   - 5);
-	            felicidad = Math.max(0,   felicidad - 5);
-	            higiene   = Math.max(0,   higiene   - 5);
+	            energia   = Math.max(0,   energia   - 4);
+	            felicidad = Math.max(0,   felicidad - 4);
+	            higiene   = Math.max(0,   higiene   - 4);
 	            if (hambre >= 80) salud = Math.max(0, salud - 6);
 	            if (higiene <= 20) salud = Math.max(0, salud - 10);
 	        } else {
@@ -76,7 +76,7 @@ public class Estadisticas {
 
 	    public boolean estaViva() {
 	        // se muere si: salud <= 0, energia <= 10, felicidad <= 15, o hambre >= 100
-	        return salud > 0 && energia > 10 && felicidad > 15 && hambre < 100;
+	        return salud >= 0 && energia >= 15 && felicidad >= 15 && hambre <= 100;
 	    }
 
 	    public int getHambre()      { return hambre; }

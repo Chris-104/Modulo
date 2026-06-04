@@ -223,78 +223,81 @@ public class Mascota_virtual {
     
 
     	
-    				private static void mostrarEstadisticasDetalladas(Mascota mascota) {
+    			// ERROR DETECTADO: En este método se usa la constante RESET (int = 0) en vez de RESET1 (String = "\u001B[0m").
+    			// Al concatenar String + int, Java convierte el 0 a texto, por eso aparece un "0" al final de cada línea.
+    			// Además los códigos de color ANSI no se resetean correctamente.
+    			private static void mostrarEstadisticasDetalladas(Mascota mascota) {
 
-    				    Estadisticas s = mascota.getStats();
+    			    Estadisticas s = mascota.getStats();
 
     				    System.out.println();
 
-    				    System.out.println(AZUL + "===========================================" + RESET);
+    				    System.out.println(AZUL + "===========================================" + RESET1);
 
     				    System.out.println(BLANCO +
     				            "       📊 ESTADISTICAS DETALLADAS 📊       "
-    				            + RESET);
+    				            + RESET1);
 
-    				    System.out.println(AZUL + "===========================================" + RESET);
+    				    System.out.println(AZUL + "===========================================" + RESET1);
 
     				    System.out.println(CYAN +
     				            "Nombre : " + mascota.getNombre()
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(CYAN +
     				            "Tipo   : " + mascota.getEmoji() + " " + mascota.getTipo()
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(AMARILLO +
     				            "Nivel  : " + s.getNivel()
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(AMARILLO +
     				            "XP     : " + s.getExperiencia()
     				            + " / " + s.getXpNecesaria()
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(VERDE +
     				            "Dias   : " + s.getDiasVividos()
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(VERDE +
     				            "Dinero : $" + s.getDinero()
-    				            + RESET);
+    				            + RESET1);
 
-    				    System.out.println(AZUL + "===========================================" + RESET);
+    				    System.out.println(AZUL + "===========================================" + RESET1);
 
     				    System.out.println(ROJO +
     				            "🍗 Hambre     : " + s.getHambre() + "%"
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(AMARILLO +
     				            "⚡ Energia    : " + s.getEnergia() + "%"
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(MORADO +
     				            "😊 Felicidad  : " + s.getFelicidad() + "%"
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(CYAN +
     				            "❤️ Salud      : " + s.getSalud() + "%"
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(VERDE +
     				            "🛁 Higiene    : " + s.getHigiene() + "%"
-    				            + RESET);
+    				            + RESET1);
 
-    				    System.out.println(AZUL + "===========================================" + RESET);
+    				    System.out.println(AZUL + "===========================================" + RESET1);
 
     				    System.out.println(BLANCO +
     				            "Estado : "
     				            + s.getEstado(mascota.isDormida()).getDescripcion()
-    				            + RESET);
+    				            + RESET1);
 
     				    System.out.println(mascota.isEnferma()
-    				            ? ROJO + "Enferma : Si 🤒" + RESET
-    				            : VERDE + "Enferma : No ✅" + RESET);
+    				            ? ROJO + "Enferma : Si 🤒" + RESET1
+    				            : VERDE + "Enferma : No ✅" + RESET1);
 
-    				    System.out.println(AZUL + "===========================================" + RESET);
+    				    System.out.println(AZUL + "===========================================" + RESET1);
     				}
 }
