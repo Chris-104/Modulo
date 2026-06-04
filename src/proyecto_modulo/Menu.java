@@ -300,7 +300,8 @@ public class Menu {
 
 	    System.out.println(BLANCO +
 	            "- Salud llega a 0" + RESET);
-
+	    System.out.println(BLANCO +"-Energia es menor a 15"+ RESET);
+        System.out.println(BLANCO +"-Felicidad es menor a 15"+ RESET);
 	    System.out.println();
 
 	    System.out.println(VERDE +
