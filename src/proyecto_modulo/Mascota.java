@@ -161,7 +161,51 @@ public class Mascota {
         return "\n  ⭐ ¡¡SUBISTE AL NIVEL " + stats.getNivel() + "!! ¡Felicidades!";
     }
 
-   
+    public String getEtapa() {
+
+        int dias = stats.getDiasVividos();
+
+        if(dias <= 5)
+            return "🐣 Bebé";
+
+        if(dias <= 15)
+            return "🧒 Joven";
+
+        if(dias <= 30)
+            return "🦁 Adulto";
+
+        return "👴 Anciano";
+    }
+    public String getDescripcionEtapa() {
+
+        int dias = stats.getDiasVividos();
+
+        if(dias <= 5)
+            return "Es una pequeña mascota que apenas comienza su aventura.";
+
+        if(dias <= 15)
+            return "Está creciendo y aprendiendo cosas nuevas cada día.";
+
+        if(dias <= 30)
+            return "Ya es una mascota adulta y fuerte.";
+
+        return "Es una mascota anciana llena de experiencia y sabiduría.";
+    } 
+        public String getEmojiEtapa() {
+
+            int dias = stats.getDiasVividos();
+
+            if(dias <= 5)
+                return "🐣";
+
+            if(dias <= 15)
+                return "🧒";
+
+            if(dias <= 30)
+                return "🦁";
+
+            return "👴";
+    }
     		public void mostrarEstado() {
 
     		    EstadoMascota estado = stats.getEstado(dormida);
@@ -171,12 +215,15 @@ public class Mascota {
     		    
 				System.out.println(AZUL + "===========================================" + AZUL);
 
-    		    System.out.println(BLANCO +
-    		            "      " + emoji + " " + nombre +
-    		            " | Dia " + stats.getDiasVividos() +
-    		            " | Nivel " + stats.getNivel()
-    		            + AZUL);
+				System.out.println(BLANCO +
+						"      " + getEmojiEtapa() + " " + emoji + " " + nombre +
+				        " | Dia " + stats.getDiasVividos() +
+				        " | Nivel " + stats.getNivel()
+				        + AZUL);
 
+				System.out.println(MORADO +
+				        "🏆 Etapa: " + getEtapa()
+				        + AZUL); 
     		    System.out.println(AZUL + "===========================================" + AZUL);
 
     		    System.out.println(CYAN +

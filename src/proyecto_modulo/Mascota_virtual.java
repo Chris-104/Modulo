@@ -260,7 +260,9 @@ public class Mascota_virtual {
     				    System.out.println(VERDE +
     				            "Dias   : " + s.getDiasVividos()
     				            + RESET1);
-
+    				    System.out.println(MORADO +
+    				            "Etapa  : " + mascota.getEtapa()
+    				            + RESET1);
     				    System.out.println(VERDE +
     				            "Dinero : $" + s.getDinero()
     				            + RESET1);
