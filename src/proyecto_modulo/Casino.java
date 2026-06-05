@@ -16,7 +16,11 @@ public class Casino {
     public static void jugar(Mascota mascota, Scanner sc) {
 
         Random random = new Random();
+        boolean jugandoCasino = true;
 
+        while(jugandoCasino) {
+        	
+        
         System.out.println(MORADO +
         		"\n====================================");
         		System.out.println(
@@ -67,7 +71,7 @@ public class Casino {
 
             default:
                 System.out.println("❌ Opción inválida.");
-                return;
+                continue;
         
         }
 
@@ -76,12 +80,12 @@ public class Casino {
 
         if(apuesta <= 0) {
             System.out.println("❌ La apuesta debe ser mayor que 0.");
-            return;
+            continue;
         }
 
         if(apuesta > mascota.getStats().getDinero()) {
             System.out.println("❌ No tienes suficiente dinero.");
-            return;
+            continue;
         }
 
         System.out.print("🎲 Adivina un número del 1 al " + limite + ": ");
@@ -141,5 +145,19 @@ public class Casino {
         System.out.println(
                 "💵 Dinero actual: $" +
                 mascota.getStats().getDinero());
-    }
+        
+        System.out.println("\n====================");
+        System.out.println("1. 🎰 Volver a jugar");
+        System.out.println("2. 🚪 Volver al menú");
+        System.out.println("====================");
+
+        System.out.print("👉 Opción: ");
+        int continuar = Integer.parseInt(sc.nextLine());
+        if(continuar == 2) {
+            jugandoCasino = false;
+        }
+
+        } // <- cierra el while
+
+        } // <- cierra el método jugar
 }
