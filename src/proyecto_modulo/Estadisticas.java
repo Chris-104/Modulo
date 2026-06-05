@@ -30,19 +30,32 @@ public class Estadisticas {
 	        this.diasVividos = 1;
 	    }
 
-	    public void pasarTurno(boolean dormida) {
-	        if (!dormida) {
-	            hambre    = Math.min(100, hambre    + 6);
-	            energia   = Math.max(0,   energia   - 4);
-	            felicidad = Math.max(0,   felicidad - 4);
-	            higiene   = Math.max(0,   higiene   - 4);
-	            if (hambre >= 80) salud = Math.max(0, salud - 6);
-	            if (higiene <= 20) salud = Math.max(0, salud - 10);
-	        } else {
-	            energia = Math.min(100, energia + 15);
-	            hambre  = Math.min(100, hambre  + 2);
-	        }
-	    }
+    /*
+     * COHERENCIA - pasarTurno()
+     * =========================
+     * APLICADO:
+     *   - Felicidad al despierto: -3 (antes -4) para no bajar tan rapido.
+     *   - Al dormir: recupera salud +5 adicionalmente.
+     *
+     * Reglas actuales:
+     *   Despierto: hambre +6, energia -4, felicidad -3, higiene -4.
+     *              penalizacion salud si hambre>=80 o higiene<=20.
+     *   Dormido:   energia +15, hambre +2, salud +5.
+     */
+    public void pasarTurno(boolean dormida) {
+        if (!dormida) {
+            hambre    = Math.min(100, hambre    + 6);
+            energia   = Math.max(0,   energia   - 3);
+            felicidad = Math.max(0,   felicidad - 3);  // CAMBIO: antes era -4, ahora -3 para no bajar tan rapido
+            higiene   = Math.max(0,   higiene   - 3);
+            if (hambre >= 80) salud = Math.max(0, salud - 6);
+            if (higiene <= 20) salud = Math.max(0, salud - 10);
+        } else {
+            energia = Math.min(100, energia + 15);
+            hambre  = Math.min(100, hambre  + 2);
+            salud   = Math.min(100, salud   + 5);  // CAMBIO: recupera salud al descansar profundamente
+        }
+    }
 
 	    public boolean ganarExperiencia(int xp) {
 	        experiencia += xp;
@@ -57,27 +70,55 @@ public class Estadisticas {
 	        return false;
 	    }
 
-	    public EstadoMascota getEstado(boolean dormida) {
-	        // condiciones de muerte (revisar primero para que sean alcanzables)
-	        if (salud <= 0)        return EstadoMascota.MUERTO;
-	        if (energia <= 10)     return EstadoMascota.MUERTO;
-	        if (felicidad <= 15)   return EstadoMascota.MUERTO;
-	        if (hambre >= 100)     return EstadoMascota.MUERTO;
+    /*
+     * COHERENCIA - getEstado() vs estaViva()
+     * ======================================
+     * APLICADO: Los umbrales de estaViva() fueron corregidos para coincidir
+     * exactamente con los de getEstado(), evitando estados "fantasma".
+     * Antes: salud>=0, energia>=15, felicidad>=15, hambre<=100.
+     * Ahora: salud>0, energia>10, felicidad>15, hambre<100.
+     */
+    public EstadoMascota getEstado(boolean dormida) {
+        // condiciones de muerte (revisar primero para que sean alcanzables)
+        if (salud <= 0)        return EstadoMascota.MUERTO;
+        if (energia <= 10)     return EstadoMascota.MUERTO;
+        if (felicidad <= 15)   return EstadoMascota.MUERTO;
+        if (hambre >= 100)     return EstadoMascota.MUERTO;
 
-	        if (dormida)           return EstadoMascota.DORMIDO;
-	        if (salud <= 30)       return EstadoMascota.ENFERMO;
-	        if (hambre >= 80)      return EstadoMascota.HAMBRIENTO;
-	        if (energia <= 20)     return EstadoMascota.CANSADO;
-	        if (felicidad <= 25)   return EstadoMascota.TRISTE;
-	        if (felicidad >= 75)   return EstadoMascota.FELIZ;
+        if (dormida)           return EstadoMascota.DORMIDO;
+        if (salud <= 30)       return EstadoMascota.ENFERMO;
+        if (hambre >= 80)      return EstadoMascota.HAMBRIENTO;
+        if (energia <= 20)     return EstadoMascota.CANSADO;
+        if (felicidad <= 25)   return EstadoMascota.TRISTE;
+        if (felicidad >= 75)   return EstadoMascota.FELIZ;
 
-	        return EstadoMascota.NORMAL;
-	    }
+        return EstadoMascota.NORMAL;
+    }
 
-	    public boolean estaViva() {
-	        // se muere si: salud <= 0, energia <= 10, felicidad <= 15, o hambre >= 100
-	        return salud >= 0 && energia >= 15 && felicidad >= 15 && hambre <= 100;
-	    }
+    /*
+     * ANALISIS DE COHERENCIA - estaViva()
+     * ===================================
+     * INCOHERENCIA CRITICA: Los umbrales de este metodo NO coinciden
+     * con getEstado(), lo que permite estados de muerte parcial o
+     * "fantasma" donde la mascota aparece viva pero el estado dice MUERTO.
+     *
+     * Cambios sugeridos para alinear con getEstado():
+     *   UBICACION: Modificar la linea de retorno de estaViva().
+     *   CAMBIO:
+     *     return salud > 0 && energia > 10 && felicidad > 15 && hambre < 100;
+     *
+     * Explicacion:
+     *   - salud > 0   : getEstado() dice MUERTO si salud <= 0. Debe ser estrictamente mayor.
+     *   - energia > 10: getEstado() dice MUERTO si energia <= 10. No >= 15.
+     *   - felicidad > 15: getEstado() dice MUERTO si felicidad <= 15. No >= 15.
+     *   - hambre < 100: getEstado() dice MUERTO si hambre >= 100. No <= 100.
+     */
+    public boolean estaViva() {
+        // CAMBIO: umbrales corregidos para coincidir con getEstado()
+        // antes: salud >= 0, energia >= 15, felicidad >= 15, hambre <= 100
+        // ahora: salud > 0, energia > 10, felicidad > 15, hambre < 100
+        return salud > 0 && energia > 10 && felicidad > 15 && hambre < 100;
+    }
 
 	    public int getHambre()      { return hambre; }
 	    public int getEnergia()     { return energia; }

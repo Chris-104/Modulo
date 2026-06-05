@@ -85,49 +85,51 @@ public class Menu {
 
     		    System.out.println(AZUL + "==========================================" + RESET);
 
-    		    System.out.println(AZUL + "" + VERDE +
+    		  System.out.println(AZUL + "" + VERDE +
     		            " 1. 🍖 Alimentar                       "
     		            + AZUL + "" + RESET);
 
-    		  
-
-    		    System.out.println(AZUL + "" + MORADO +
-    		            " 2. 🌙 Dormir                          "
+    		  System.out.println(AZUL + "" + AMARILLO +
+    		            " 2. 🎾 Jugar                           "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + AMARILLO +
-    		            " 3. ☀️ Despertar                       "
+    		  System.out.println(AZUL + "" + MORADO +
+    		            " 3. 🌙 Dormir                          "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + CYAN +
-    		            " 4. 🛁 Bañar                           "
+    		  System.out.println(AZUL + "" + AMARILLO +
+    		            " 4. ☀️ Despertar                       "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + ROJO +
-    		            " 5. 💊 Medicar                         "
+    		  System.out.println(AZUL + "" + CYAN +
+    		            " 5. 🛁 Bañar                           "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + VERDE +
-    		            " 6. 💼 Trabajar                        "
+    		  System.out.println(AZUL + "" + ROJO +
+    		            " 6. 💊 Medicar                         "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + AMARILLO +
-    		            " 7. 🏪 Ir a la tienda                  "
+    		  System.out.println(AZUL + "" + VERDE +
+    		            " 7. 💼 Trabajar                        "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + CYAN +
-    		            " 8. 📊 Ver estadísticas                "
+    		  System.out.println(AZUL + "" + AMARILLO +
+    		            " 8. 🏪 Ir a la tienda                  "
     		            + AZUL + "" + RESET);
 
-				System.out.println(AZUL + "" + ROJO +
-						" 9.🚪 Ver menu sonido                  "
-						+ AZUL + "" + RESET);
+    		  System.out.println(AZUL + "" + CYAN +
+    		            " 9. 📊 Ver estadísticas                "
+    		            + AZUL + "" + RESET);
 
-				
-System.out.println(AZUL+ "" + MORADO + " 10. Casino de Mascotas "+ AZUL + "" + RESET);
+			System.out.println(AZUL + "" + ROJO +
+					" 10.🚪 Ver menu sonido                  "
+					+ AZUL + "" + RESET);
+
+			
+System.out.println(AZUL+ "" + MORADO + " 11. Casino de Mascotas "+ AZUL + "" + RESET);
 
 System.out.println(AZUL + "" + CYAN +
-		" 11.📊 Volver a menu principal          "
+		" 12.📊 Volver a menu principal          "
 		+ AZUL + "" + RESET);
 				System.out.println(AZUL + "==========================================" + RESET);
 
