@@ -2,10 +2,12 @@ package proyecto_modulo;
 
 import java.util.Scanner;
 
-// Clase que maneja la tienda del juego
-public class Tienda {
 
-    // Clase interna para representar un producto
+public class Tienda {
+	// Clase que maneja la tienda del juego
+	 // Clase interna para representar un producto
+	
+ 
     static class Producto {
         String nombre;
         String emoji;
@@ -26,55 +28,124 @@ public class Tienda {
         new Producto("Juguete Pelota",   "🎾",  10, "felicidad+25,energia-10"),
         new Producto("Champú Especial",  "🧴",  12, "higiene+50"),
         new Producto("Cama Cómoda",      "🛏️",  25, "energia+40"),
-        new Producto("Snack Energético", "🍬",   8, "energia+20,hambre-10"),
+        new Producto("Snack Energético", "🍬",   8, "energia+20,hambre-10")
     };
+        private static Producto[] obtenerComidas(Mascota mascota) {
+
+            switch(mascota.getTipo().toLowerCase()) {
+
+                case "perro":
+                    return new Producto[] {
+                        new Producto("Hueso Gigante", "🦴", 10, "hambre-25,felicidad+5"),
+                        new Producto("Croquetas Premium", "🥩", 15, "hambre-40,felicidad+10"),
+                        new Producto("Carne Asada", "🍖", 20, "hambre-60,felicidad+15")
+                    };
+
+                case "gato":
+                    return new Producto[] {
+                        new Producto("Atún", "🐟", 10, "hambre-25,felicidad+5"),
+                        new Producto("Pescado Fresco", "🐠", 15, "hambre-40,felicidad+10"),
+                        new Producto("Leche Especial", "🥛", 20, "hambre-60,felicidad+15")
+                    };
+
+                case "conejo":
+                    return new Producto[] {
+                        new Producto("Zanahoria", "🥕", 10, "hambre-25"),
+                        new Producto("Lechuga", "🥬", 15, "hambre-40"),
+                        new Producto("Ensalada Deluxe", "🥗", 20, "hambre-60,felicidad+10")
+                    };
+
+                case "panda":
+                    return new Producto[] {
+                        new Producto("Bambú Fresco", "🎋", 10, "hambre-25"),
+                        new Producto("Bambú Premium", "🎍", 15, "hambre-40"),
+                        new Producto("Pastel de Bambú", "🍰", 25, "hambre-60,felicidad+15")
+                    };
+
+                case "dragón":
+                case "dragon":
+                    return new Producto[] {
+                        new Producto("Carne Gigante", "🍖", 25, "hambre-40"),
+                        new Producto("Lava Mágica", "🔥", 35, "hambre-60,energia+20"),
+                        new Producto("Cristal de Fuego", "💎", 50, "hambre-80,felicidad+20")
+                    };
+
+                case "zorro":
+                    return new Producto[] {
+                        new Producto("Pollo", "🍗", 10, "hambre-25"),
+                        new Producto("Conejo Salvaje", "🥩", 20, "hambre-50"),
+                        new Producto("Banquete del Bosque", "🍖", 30, "hambre-70,felicidad+15")
+                    };
+
+                case "lobo":
+                    return new Producto[] {
+                        new Producto("Carne Cruda", "🥩", 15, "hambre-30"),
+                        new Producto("Costillas", "🍖", 25, "hambre-55"),
+                        new Producto("Banquete Alfa", "🍗", 40, "hambre-80,felicidad+20")
+                    };
+
+                default:
+                    return new Producto[] {
+                        new Producto("Comida Universal", "🍎", 15, "hambre-40")
+                    };
+            }
+        }
+    
 
     public static void mostrar(Mascota mascota, Scanner sc) {
         boolean enTienda = true;
+        
+      
 
         while (enTienda) {
-            System.out.println("\n ===========================================");
-            System.out.println("              🏪 TIENDA VIRTUAL               ");
-            System.out.printf ("            💰 Tu dinero: $%-5d              %n",
-                    mascota.getStats().getDinero());
-            System.out.println("   ===========================================");
 
-            for (int i = 0; i < PRODUCTOS.length; i++) {
-                Producto p = PRODUCTOS[i];
-                System.out.printf("     %d. %s %-18s  $%d%n",
-                        i + 1, p.emoji, p.nombre, p.precio);
+        	Producto[] productos = obtenerComidas(mascota);
 
+        	System.out.println(Colores.CIAN + "======================================" + Colores.RESET);
+        	System.out.println(Colores.MORADO + Colores.NEGRITA + "        🏪 TIENDA DEL JUEGO        " + Colores.RESET);
+        	System.out.println(Colores.CIAN + "======================================" + Colores.RESET);
 
-                System.out.printf("        Efecto: %-30s  %n", p.efecto);
-                System.out.println("                                          ");
+        	System.out.println(Colores.AMARILLO + "💰 Dinero: $" 
+        	        + mascota.getStats().getDinero() + Colores.RESET);
+        	for (int i = 0; i < productos.length; i++) {
 
+        	    Producto p = productos[i];
 
-                System.out.printf("       Efecto: %-30s ║%n", p.efecto);
-                System.out.println("                                        ");
+        	    System.out.println(
+        	        Colores.VERDE + "[" + (i + 1) + "] " + p.emoji + " " + p.nombre 
+        	        + Colores.RESET
+        	    );
 
-            }
-            System.out.println("     0. Salir de la tienda                    ");
-            System.out.println("   ===========================================");
-            System.out.print("  👉 ¿Qué deseas comprar? ");
+        	    System.out.println(
+        	        Colores.AZUL + "   💲 Precio: $" + p.precio + Colores.RESET
+        	    );
 
+        	    System.out.println(
+        	        Colores.MORADO + "   ✨ Efecto: " + p.efecto + Colores.RESET
+        	    );
+
+        	    System.out.println(Colores.CIAN + "----------------------------------" + Colores.RESET);
+        	}
+        	System.out.println(Colores.ROJO + "[0] 🚪 Salir de la tienda" + Colores.RESET);
+
+        	System.out.print(Colores.AZUL + "🎮 Elige una opción: " + Colores.RESET);
             int op = leerInt(sc);
+
             if (op == 0) {
                 enTienda = false;
-            } else if (op >= 1 && op <= PRODUCTOS.length) {
-
-
-                comprar(mascota, PRODUCTOS[op - 1],sc);
-
-//            	comprar(mascota, PRODUCTOS[op - 1],sc);
-
-
-            	comprar(mascota, PRODUCTOS[op - 1],sc);
-
-            } else {
-                System.out.println("  ❌ Opción no válida.");
+            }
+            else if (op >= 1 && op <= productos.length) {
+                comprar(mascota, productos[op - 1], sc);
+            }
+            else {
+                System.out.println("Opción inválida");
             }
         }
     }
+
+        // 🔴 AQUÍ TERMINA EL MÉTODO
+
+    
 
     private static void comprar(Mascota mascota, Producto p, Scanner sc) {
     	if (mascota.getStats().getDinero() < p.precio) {
