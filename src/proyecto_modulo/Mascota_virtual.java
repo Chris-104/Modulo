@@ -69,40 +69,40 @@ public class Mascota_virtual {
                     resultado = mascota.alimentar();
                     break;
                 case 2:
-                    resultado = mascota.jugar();
-                    break;
-                case 3:
                     resultado = mascota.dormir();
                     break;
-                case 4:
+                case 3:
                     resultado = mascota.despertar();
                     break;
-                case 5:
+                case 4:
                     resultado = mascota.bañar();
                     break;
-                case 6:
+                case 5:
                     resultado = mascota.medicar();
                     break;
-                case 7:
+                case 6:
                     resultado = mascota.trabajar();
                     break;
-                case 8:
+                case 7:
                     Tienda.mostrar(mascota, menu.getSc());
                     resultado = "  🏪 Volviste de la tienda.";
                     break;
-                case 9:
+                case 8:
                     mostrarEstadisticasDetalladas(mascota);
                     menu.pausa();
                     continue;
-                case 10:
+                case 9:
                     mostrarMenuAudioEnJuego(menu);
                     continue;
+                    
+                case 10:
+                	Casino.jugar(mascota, menu.getSc());
+                	continue;
+                	
                 case 11:
-                    enPartida = false;
-                    resultado = "  🚪 Volviendo al menú principal...";
-                    break;
-                default:
-                    resultado = "  ❌ Opción no válida.";
+                	enPartida = false;
+                	resultado = " Volviendo al menu principal...";
+                	break;
             }
  
             System.out.println(resultado);
@@ -200,7 +200,7 @@ public class Mascota_virtual {
     		            default:
     		                System.out.println(ROJO +
     		                        "\n❌ Opcion invalida."
-    		                        + RESET1);
+    		                        + RESET1   );
     		        }
     		    }
     		

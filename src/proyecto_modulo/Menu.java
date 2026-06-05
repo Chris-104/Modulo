@@ -89,46 +89,46 @@ public class Menu {
     		            " 1. 🍖 Alimentar                       "
     		            + AZUL + "" + RESET);
 
-    		    System.out.println(AZUL + "" + CYAN +
-    		            " 2. 🎾 Jugar                           "
-    		            + AZUL + "" + RESET);
+    		  
 
     		    System.out.println(AZUL + "" + MORADO +
-    		            " 3. 🌙 Dormir                          "
+    		            " 2. 🌙 Dormir                          "
     		            + AZUL + "" + RESET);
 
     		    System.out.println(AZUL + "" + AMARILLO +
-    		            " 4. ☀️ Despertar                       "
+    		            " 3. ☀️ Despertar                       "
     		            + AZUL + "" + RESET);
 
     		    System.out.println(AZUL + "" + CYAN +
-    		            " 5. 🛁 Bañar                           "
+    		            " 4. 🛁 Bañar                           "
     		            + AZUL + "" + RESET);
 
     		    System.out.println(AZUL + "" + ROJO +
-    		            " 6. 💊 Medicar                         "
+    		            " 5. 💊 Medicar                         "
     		            + AZUL + "" + RESET);
 
     		    System.out.println(AZUL + "" + VERDE +
-    		            " 7. 💼 Trabajar                        "
+    		            " 6. 💼 Trabajar                        "
     		            + AZUL + "" + RESET);
 
     		    System.out.println(AZUL + "" + AMARILLO +
-    		            " 8. 🏪 Ir a la tienda                  "
+    		            " 7. 🏪 Ir a la tienda                  "
     		            + AZUL + "" + RESET);
 
     		    System.out.println(AZUL + "" + CYAN +
-    		            " 9. 📊 Ver estadísticas                "
+    		            " 8. 📊 Ver estadísticas                "
     		            + AZUL + "" + RESET);
 
 				System.out.println(AZUL + "" + ROJO +
-						" 10.🚪 Ver menu sonido                  "
+						" 9.🚪 Ver menu sonido                  "
 						+ AZUL + "" + RESET);
 
-				System.out.println(AZUL + "" + CYAN +
-						" 11.📊 Volver a menu principal          "
-						+ AZUL + "" + RESET);
+				
+System.out.println(AZUL+ "" + MORADO + " 10. Casino de Mascotas "+ AZUL + "" + RESET);
 
+System.out.println(AZUL + "" + CYAN +
+		" 11.📊 Volver a menu principal          "
+		+ AZUL + "" + RESET);
 				System.out.println(AZUL + "==========================================" + RESET);
 
 				System.out.print(MORADO + "\n👉 Tu opción: " + RESET);
