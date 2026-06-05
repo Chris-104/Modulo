@@ -69,40 +69,50 @@ public class Mascota_virtual {
                     resultado = mascota.alimentar();
                     break;
                 case 2:
-                    resultado = mascota.dormir();
+                    resultado = mascota.jugar();
                     break;
                 case 3:
-                    resultado = mascota.despertar();
+                    System.out.print("  ¿Cuántas horas quieres dormir? (1-12): ");
+                    int horasDormir = menu.leerInt();
+                    if (horasDormir < 1) horasDormir = 1;
+                    if (horasDormir > 12) horasDormir = 12;
+                    resultado = mascota.dormir(horasDormir);
                     break;
                 case 4:
-                    resultado = mascota.bañar();
+                    resultado = mascota.despertar();
                     break;
                 case 5:
-                    resultado = mascota.medicar();
+                    resultado = mascota.bañar();
                     break;
                 case 6:
-                    resultado = mascota.trabajar();
+                    resultado = mascota.medicar();
                     break;
                 case 7:
+                    resultado = mascota.trabajar();
+                    break;
+                case 8:
                     Tienda.mostrar(mascota, menu.getSc());
                     resultado = "  🏪 Volviste de la tienda.";
                     break;
-                case 8:
+                case 9:
                     mostrarEstadisticasDetalladas(mascota);
                     menu.pausa();
                     continue;
-                case 9:
+                case 10:
                     mostrarMenuAudioEnJuego(menu);
                     continue;
                     
-                case 10:
+                case 11:
                 	Casino.jugar(mascota, menu.getSc());
                 	continue;
                 	
-                case 11:
+                case 12:
                 	enPartida = false;
                 	resultado = " Volviendo al menu principal...";
                 	break;
+                default:
+                    resultado = "  ❌ Opción no válida.";
+                    break;
             }
  
             System.out.println(resultado);
@@ -110,7 +120,7 @@ public class Mascota_virtual {
             if (!mascota.estaViva()) {
                 menu.mostrarGameOver(mascota);
                 enPartida = false;
-            } else if (opcion != 11) {
+            } else if (opcion != 12) {
                 menu.pausa();
             }
         }
