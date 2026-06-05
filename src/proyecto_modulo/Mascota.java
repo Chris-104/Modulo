@@ -27,6 +27,7 @@ public class Mascota {
         this.dormida = false;
         this.enferma = false;
         this.stats   = new Estadisticas();
+        this.stats.aplicarModificadoresTipo(tipo); // Aplica bonus por tipo de animal
         this.turno   = 0;
     }
  
@@ -130,8 +131,8 @@ public class Mascota {
         // Recuperacion proporcional a las horas dormidas:
         // 10% energia por hora, 5% salud por hora
         // NOTA: La hambre NO cambia durante el sueno (pedido del usuario)
-        int energiaRecuperada = Math.min(100 - stats.getEnergia(), horas * 10);
-        int saludRecuperada = Math.min(100 - stats.getSalud(), horas * 5);
+        int energiaRecuperada = Math.min(stats.getMaxEnergia() - stats.getEnergia(), horas * 10);
+        int saludRecuperada = Math.min(stats.getMaxSalud() - stats.getSalud(), horas * 5);
 
         stats.setEnergia(stats.getEnergia() + energiaRecuperada);
         stats.setSalud(stats.getSalud() + saludRecuperada);
@@ -182,8 +183,8 @@ public class Mascota {
         Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_BAÑAR);
   
         int higieneAntes = stats.getHigiene();  // CAMBIO: guardamos valor antes de limpiar
-        stats.setHigiene(100);
-        stats.setSalud(Math.min(100, stats.getSalud() + 10));
+        stats.setHigiene(stats.getMaxHigiene());
+        stats.setSalud(Math.min(stats.getMaxSalud(), stats.getSalud() + 10));
         if (higieneAntes < 30) {
             stats.setFelicidad(stats.getFelicidad() + 15);  // CAMBIO: mas felicidad si estaba muy sucio
         } else {
@@ -202,7 +203,7 @@ public class Mascota {
             return "  💸 No tienes suficiente dinero. Necesitas $20.";
  
         stats.setDinero(stats.getDinero() - 20);
-        stats.setSalud(Math.min(100, stats.getSalud() + 40));
+        stats.setSalud(Math.min(stats.getMaxSalud(), stats.getSalud() + 40));
         enferma = false;
         boolean subioNivel = stats.ganarExperiencia(20);
         avanzarTurno();
@@ -349,30 +350,30 @@ public class Mascota {
 
     		    System.out.println(AZUL + "===========================================" + AZUL);
 
-    		    System.out.println(ROJO +
-    		            "🍗 Hambre    : " +
-    		            barra(stats.getHambre(), true)
-    		            + AZUL);
+            System.out.println(ROJO +
+                    "🍗 Hambre    : " +
+                    barra(stats.getHambre(), stats.getMaxHambre(), true)
+                    + AZUL);
 
-    		    System.out.println(AMARILLO +
-    		            "⚡ Energia   : " +
-    		            barra(stats.getEnergia(), false)
-    		            + AZUL);
+            System.out.println(AMARILLO +
+                    "⚡ Energia   : " +
+                    barra(stats.getEnergia(), stats.getMaxEnergia(), false)
+                    + AZUL);
 
-    		    System.out.println(MORADO +
-    		            "😊 Felicidad : " +
-    		            barra(stats.getFelicidad(), false)
-    		            + AZUL);
+            System.out.println(MORADO +
+                    "😊 Felicidad : " +
+                    barra(stats.getFelicidad(), stats.getMaxFelicidad(), false)
+                    + AZUL);
 
-    		    System.out.println(CYAN +
-    		            "❤️ Salud     : " +
-    		            barra(stats.getSalud(), false)
-    		            + AZUL);
+            System.out.println(CYAN +
+                    "❤️ Salud     : " +
+                    barra(stats.getSalud(), stats.getMaxSalud(), false)
+                    + AZUL);
 
-    		    System.out.println(VERDE +
-    		            "🛁 Higiene   : " +
-    		            barra(stats.getHigiene(), false)
-    		            + AZUL);
+            System.out.println(VERDE +
+                    "🛁 Higiene   : " +
+                    barra(stats.getHigiene(), stats.getMaxHigiene(), false)
+                    + AZUL);
 
     		    if (enferma) {
     		        System.out.println(ROJO +
@@ -385,8 +386,8 @@ public class Mascota {
     		
 
  
-    private String barra(int valor, boolean invertido) {
-        int bloques = valor / 10;
+    private String barra(int valor, int maximo, boolean invertido) {
+        int bloques = (valor * 10) / maximo;  // Proporcion al maximo personalizado
         String lleno = invertido ? "🟥" : "🟩";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 10; i++)

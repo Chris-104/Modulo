@@ -74,39 +74,38 @@ public class Mascota_virtual {
                 case 3:
                     System.out.print("  ¿Cuántas horas quieres dormir? (1-12): ");
                     int horasDormir = menu.leerInt();
-                    if (horasDormir < 1) horasDormir = 1;
-                    if (horasDormir > 12) horasDormir = 12;
-                    resultado = mascota.dormir(horasDormir);
+                    if (horasDormir < 1 || horasDormir > 12) {
+                        resultado = "  ❌ Error: La mascota no puede dormir " + horasDormir + " horas. El limite es 1-12 horas.";
+                    } else {
+                        resultado = mascota.dormir(horasDormir);
+                    }
                     break;
                 case 4:
-                    resultado = mascota.despertar();
-                    break;
-                case 5:
                     resultado = mascota.bañar();
                     break;
-                case 6:
+                case 5:
                     resultado = mascota.medicar();
                     break;
-                case 7:
+                case 6:
                     resultado = mascota.trabajar();
                     break;
-                case 8:
+                case 7:
                     Tienda.mostrar(mascota, menu.getSc());
                     resultado = "  🏪 Volviste de la tienda.";
                     break;
-                case 9:
+                case 8:
                     mostrarEstadisticasDetalladas(mascota);
                     menu.pausa();
                     continue;
-                case 10:
+                case 9:
                     mostrarMenuAudioEnJuego(menu);
                     continue;
                     
-                case 11:
+                case 10:
                 	Casino.jugar(mascota, menu.getSc());
                 	continue;
                 	
-                case 12:
+                case 11:
                 	enPartida = false;
                 	resultado = " Volviendo al menu principal...";
                 	break;
@@ -120,7 +119,7 @@ public class Mascota_virtual {
             if (!mascota.estaViva()) {
                 menu.mostrarGameOver(mascota);
                 enPartida = false;
-            } else if (opcion != 12) {
+            } else if (opcion != 11) {
                 menu.pausa();
             }
         }

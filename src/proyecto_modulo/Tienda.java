@@ -44,11 +44,13 @@ public class Tienda {
                 System.out.printf("     %d. %s %-18s  $%d%n",
                         i + 1, p.emoji, p.nombre, p.precio);
 
+
                 System.out.printf("        Efecto: %-30s  %n", p.efecto);
                 System.out.println("                                          ");
 
-//                System.out.printf("       Efecto: %-30s ║%n", p.efecto);
-//                System.out.println("                                        ");
+
+                System.out.printf("       Efecto: %-30s ║%n", p.efecto);
+                System.out.println("                                        ");
 
             }
             System.out.println("     0. Salir de la tienda                    ");
@@ -60,9 +62,13 @@ public class Tienda {
                 enTienda = false;
             } else if (op >= 1 && op <= PRODUCTOS.length) {
 
+
                 comprar(mascota, PRODUCTOS[op - 1],sc);
 
 //            	comprar(mascota, PRODUCTOS[op - 1],sc);
+
+
+            	comprar(mascota, PRODUCTOS[op - 1],sc);
 
             } else {
                 System.out.println("  ❌ Opción no válida.");
@@ -74,7 +80,11 @@ public class Tienda {
     	if (mascota.getStats().getDinero() < p.precio) {
             System.out.println("  💸 No tienes suficiente dinero. Necesitas $" + p.precio);
             System.out.print("  👉 Presiona Enter para continuar...");
+
             sc.nextLine();
+
+            sc.nextLine(); // Pausa para que no se borre el mensaje
+
             return;
         }
         
@@ -85,7 +95,11 @@ public class Tienda {
                 " por $" + p.precio + ". ¡Aplicado a " + mascota.getNombre() + "!");
                 
         System.out.print("  👉 Presiona Enter para continuar...");
+
         sc.nextLine();
+
+        sc.nextLine(); // Pausa para el mensaje de éxito
+
     }
     private static void aplicarEfecto(Mascota mascota, String efecto) {
         String[] partes = efecto.split(",");
