@@ -19,6 +19,13 @@ public class Reproductor_sonidos {
     public static final String SFX_DUERMA   = "sounds/dormir.wav";
     public static final String SFX_RULETA   = "sounds/ruleta.wav";
     public static final String SFX_COMPRAR  = "sounds/comprar.wav";
+    public static final String SFX_PERRO  = "sounds/perro.wav";
+    public static final String SFX_GATO  = "sounds/gato.wav";
+    public static final String SFX_DRAGON  = "sounds/dragon.wav";
+    public static final String SFX_ZORRO  = "sounds/zorro.wav";
+    public static final String SFX_LOBO  = "sounds/lobo.wav";
+    public static final String SFX_CONEJO  = "sounds/conejo.wav";
+    public static final String SFX_PANDA  = "sounds/panda.wav";
 
     public static void iniciarMusicaFondo() {
         if (!sonidoActivado) return;
@@ -95,6 +102,20 @@ public class Reproductor_sonidos {
     public static void sfxMuerte() { reproducirEfecto(SFX_MUERTE); }
     public static void sfxDormir() { reproducirEfecto(SFX_DUERMA); }
     public static void sfxComer()  { reproducirEfecto(SFX_COMER);  }
+
+    public static void reproducirSonidoAnimal(String tipo) {
+        switch(tipo.toLowerCase()) {
+            case "perro":  reproducirEfecto(SFX_PERRO);  break;
+            case "gato":   reproducirEfecto(SFX_GATO);   break;
+            case "dragón":
+            case "dragon": reproducirEfecto(SFX_DRAGON); break;
+            case "conejo": reproducirEfecto(SFX_CONEJO); break;
+            case "panda":  reproducirEfecto(SFX_PANDA);  break;
+            case "zorro":  reproducirEfecto(SFX_ZORRO);  break;
+            case "lobo":   reproducirEfecto(SFX_LOBO);   break;
+            default:       break; // Sin sonido para "otro" o tipos personalizados
+        }
+    }
 
     public static void setSonidoActivado(boolean activado) {
         sonidoActivado = activado;

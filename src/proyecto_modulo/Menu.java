@@ -227,12 +227,15 @@ System.out.println(AZUL + "" + CYAN +
 						System.out.println(ROJO + "Elija una opcion valida" + RESET);
 						continue;
 				}
-			break;
-			}
+    			if (tipoOp != 8) {
+    				Reproductor_sonidos.reproducirSonidoAnimal(tipo);
+    			}
+    			break;
+    		}
 
-			System.out.println(AMARILLO +
-					"\n🌈 Elige el género:"
-					+ RESET);
+    		System.out.println(AMARILLO +
+    				"\n🌈 Elige el género:"
+    				+ RESET);
 
 			System.out.println(VERDE +
 					" 1. ♂️ Macho"
