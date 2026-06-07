@@ -227,20 +227,55 @@ System.out.println(AZUL + "" + CYAN +
 						System.out.println(ROJO + "Elija una opcion valida" + RESET);
 						continue;
 				}
-				break;
+			break;
 			}
 
-				System.out.println(VERDE +
-						"\n✨ ¡" + nombre + " el/la " + tipo +
-						" ha llegado a tu vida!"
+			System.out.println(AMARILLO +
+					"\n🌈 Elige el género:"
+					+ RESET);
+
+			System.out.println(VERDE +
+					" 1. ♂️ Macho"
+					+ RESET);
+
+			System.out.println(MORADO +
+					" 2. ♀️ Hembra"
+					+ RESET);
+
+			String genero;
+			while (true) {
+				System.out.print(MORADO +
+						"\n👉 Opción: "
 						+ RESET);
 
-				System.out.println(AMARILLO +
-						"💖 ¡Cuídalo/a bien!"
-						+ RESET);
- 				pausa();
+				int genOp = leerInt();
 
-				 return new Mascota(nombre, tipo);
+				if (genOp == 1) {
+					genero = "macho";
+					break;
+				} else if (genOp == 2) {
+					genero = "hembra";
+					break;
+				} else {
+					System.out.println(ROJO + "Elija una opción válida" + RESET);
+				}
+			}
+
+			String articulo = genero.equals("macho") ? "el" : "la";
+			String cuidado = genero.equals("macho") ? "Cuídalo" : "Cuídala";
+
+			System.out.println(VERDE +
+					"\n✨ ¡" + nombre + " " + articulo + " " + tipo +
+					" ha llegado a tu vida!"
+					+ RESET);
+
+			System.out.println(AMARILLO +
+					"💖 ¡" + cuidado + " bien!"
+					+ RESET);
+
+			pausa();
+
+			return new Mascota(nombre, tipo, genero);
 	}
     						
 

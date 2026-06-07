@@ -15,14 +15,16 @@ public class Mascota {
     private String nombre;
     private String tipo;
     private String emoji;
+    private String genero;
     private boolean dormida;
     private boolean enferma;
     private Estadisticas stats;
     private int turno;
  
-    public Mascota(String nombre, String tipo) {
+    public Mascota(String nombre, String tipo, String genero) {
         this.nombre  = nombre;
         this.tipo    = tipo;
+        this.genero  = genero;
         this.emoji   = asignarEmoji(tipo);
         this.dormida = false;
         this.enferma = false;
@@ -57,7 +59,7 @@ public class Mascota {
         if (stats.getHambre() <= 5)
             return "  😊 " + nombre + " ya está lleno/a.";
 
-        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_COMER);
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_COMER, true);
  
         stats.setHambre(stats.getHambre() - 35);
         stats.setFelicidad(stats.getFelicidad() + 10);
@@ -107,7 +109,7 @@ public class Mascota {
     public String dormir(int horas) {
         if (dormida) return "  😴 " + nombre + " ya está durmiendo...";
 
-        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_DUERMA);
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_DUERMA, true);
 
         // Sistema de tiempo real: 2 segundos = 1 hora del juego
         long tiempoEspera = horas * 2000L;
@@ -180,7 +182,7 @@ public class Mascota {
     public String bañar() {
         if (dormida) return "  😴 " + nombre + " está durmiendo.";
 
-        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_BAÑAR);
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_BAÑAR, true);
   
         int higieneAntes = stats.getHigiene();  // CAMBIO: guardamos valor antes de limpiar
         stats.setHigiene(stats.getMaxHigiene());
@@ -399,6 +401,7 @@ public class Mascota {
     public String getNombre()       { return nombre; }
     public String getTipo()         { return tipo; }
     public String getEmoji()        { return emoji; }
+    public String getGenero()       { return genero; }
     public boolean isDormida()      { return dormida; }
     public boolean isEnferma()      { return enferma; }
     public Estadisticas getStats()  { return stats; }

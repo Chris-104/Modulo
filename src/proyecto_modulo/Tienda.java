@@ -140,6 +140,8 @@ public class Tienda {
             return;
         }
         
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_COMPRAR, true);
+        
         mascota.getStats().setDinero(mascota.getStats().getDinero() - p.precio);
         aplicarEfecto(mascota, p.efecto);
         

@@ -92,6 +92,7 @@ public class Casino {
         int numeroUsuario = Integer.parseInt(sc.nextLine());
 
         int numeroCorrecto = random.nextInt(limite) + 1;
+        Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_RULETA, true);
         System.out.print("\n🎰 Girando ruleta");
 
         for(int i = 0; i < 5; i++) {

@@ -249,13 +249,17 @@ public class Mascota_virtual {
 
     				    System.out.println(AZUL + "===========================================" + RESET1);
 
-    				    System.out.println(CYAN +
-    				            "Nombre : " + mascota.getNombre()
-    				            + RESET1);
+    				System.out.println(CYAN +
+    			            "Nombre : " + mascota.getNombre()
+    			            + RESET1);
 
-    				    System.out.println(CYAN +
-    				            "Tipo   : " + mascota.getEmoji() + " " + mascota.getTipo()
-    				            + RESET1);
+    				System.out.println(CYAN +
+    			            "Tipo   : " + mascota.getEmoji() + " " + mascota.getTipo()
+    			            + RESET1);
+
+    				System.out.println(MORADO +
+    			            "Género : " + (mascota.getGenero().equals("macho") ? "♂️ Macho" : "♀️ Hembra")
+    			            + RESET1);
 
     				    System.out.println(AMARILLO +
     				            "Nivel  : " + s.getNivel()

@@ -10,12 +10,15 @@ public class Reproductor_sonidos {
 
     private static Clip    musicaFondo;
     private static boolean sonidoActivado = true;
+    private static long      posicionMusica = 0;  // Posición guardada al pausar
 
     public static final String MUSICA_FONDO = "sounds/musica_fondo.wav";
     public static final String SFX_BAÑAR    = "sounds/ducha.wav.wav";
     public static final String SFX_MUERTE   = "sounds/muerte.wav";
     public static final String SFX_COMER    = "sounds/comer.wav";
     public static final String SFX_DUERMA   = "sounds/dormir.wav";
+    public static final String SFX_RULETA   = "sounds/ruleta.wav";
+    public static final String SFX_COMPRAR  = "sounds/comprar.wav";
 
     public static void iniciarMusicaFondo() {
         if (!sonidoActivado) return;
@@ -40,8 +43,30 @@ public class Reproductor_sonidos {
         }
     }
 
-    public static void reproducirEfecto(String rutaArchivo) {
+    public static void pausarMusicaFondo() {
+        if (musicaFondo != null && musicaFondo.isRunning()) {
+            posicionMusica = musicaFondo.getMicrosecondPosition();
+            musicaFondo.stop();
+        }
+    }
+
+    public static void reanudarMusicaFondo() {
         if (!sonidoActivado) return;
+        if (musicaFondo != null && musicaFondo.isOpen()) {
+            musicaFondo.setMicrosecondPosition(posicionMusica);
+            musicaFondo.loop(Clip.LOOP_CONTINUOUSLY);
+            musicaFondo.start();
+        }
+    }
+
+    public static void reproducirEfecto(String rutaArchivo) {
+        reproducirEfecto(rutaArchivo, false);
+    }
+
+    public static void reproducirEfecto(String rutaArchivo, boolean pausarMusica) {
+        if (!sonidoActivado) return;
+
+        if (pausarMusica) pausarMusicaFondo();
 
         new Thread(() -> {
             try {
@@ -53,8 +78,15 @@ public class Reproductor_sonidos {
                 clip.open(audio);
                 clip.start();
 
+                // Usar listener para reanudar música exactamente cuando termina el efecto
+                clip.addLineListener(event -> {
+                    if (event.getType() == LineEvent.Type.STOP) {
+                        clip.close();
+                        if (pausarMusica) reanudarMusicaFondo();
+                    }
+                });
+
                 Thread.sleep(clip.getMicrosecondLength() / 1000);
-                clip.close();
             } catch (Exception e) {  }
         }).start();
     }
