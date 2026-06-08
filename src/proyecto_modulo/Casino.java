@@ -32,6 +32,12 @@ public class Casino {
         System.out.println("💰 Dinero disponible: $" +
                 mascota.getStats().getDinero());
 
+        if(mascota.getStats().getDinero() <= 0) {
+            System.out.println("❌ No tienes dinero para apostar. Volviendo al menú...");
+            jugandoCasino = false;
+            break;
+        }
+
         System.out.println("\n🎯 Selecciona una dificultad:\n");
 
         System.out.println(VERDE +
@@ -46,13 +52,21 @@ public class Casino {
                 "3. 🔴 Extremo  [1 - 10]   x5"
                 + RESET);
 
+        System.out.println(ROJO +
+                "0. 🚪 Volver al menú"
+                + RESET);
+
         System.out.print("\n👉 Opción: ");
-        int opcion = Integer.parseInt(sc.nextLine());
+        int opcion = leerInt(sc);
 
         int limite = 0;
         double multiplicador = 0;
 
         switch(opcion) {
+
+            case 0:
+                jugandoCasino = false;
+                continue;
 
             case 1:
                 limite = 3;
@@ -76,7 +90,7 @@ public class Casino {
         }
 
         System.out.print("\n💸 ¿Cuánto deseas apostar?: ");
-        int apuesta = Integer.parseInt(sc.nextLine());
+        int apuesta = leerInt(sc);
 
         if(apuesta <= 0) {
             System.out.println("❌ La apuesta debe ser mayor que 0.");
@@ -89,7 +103,12 @@ public class Casino {
         }
 
         System.out.print("🎲 Adivina un número del 1 al " + limite + ": ");
-        int numeroUsuario = Integer.parseInt(sc.nextLine());
+        int numeroUsuario = leerInt(sc);
+
+        if(numeroUsuario < 1 || numeroUsuario > limite) {
+            System.out.println("❌ Número fuera de rango. Debe ser entre 1 y " + limite + ".");
+            continue;
+        }
 
         int numeroCorrecto = random.nextInt(limite) + 1;
         Reproductor_sonidos.reproducirEfecto(Reproductor_sonidos.SFX_RULETA, true);
@@ -153,7 +172,7 @@ public class Casino {
         System.out.println("====================");
 
         System.out.print("👉 Opción: ");
-        int continuar = Integer.parseInt(sc.nextLine());
+        int continuar = leerInt(sc);
         if(continuar == 2) {
             jugandoCasino = false;
         }
@@ -161,4 +180,14 @@ public class Casino {
         } // <- cierra el while
 
         } // <- cierra el método jugar
+
+    private static int leerInt(Scanner sc) {
+        while (true) {
+            try {
+                return Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.print("Ingresa un número válido: ");
+            }
+        }
+    }
 }
